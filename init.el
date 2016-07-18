@@ -17,6 +17,7 @@
 (setq linum-format "%3d")
 
 (delete-selection-mode 1)
+(electric-pair-mode 1)
 
 (setq-default cursor-type 'bar) 
 
