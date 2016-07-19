@@ -13,13 +13,12 @@
 (tool-bar-mode -1) 
 (setq-default tab-width 4)
 
-(global-linum-mode 1)
-(setq linum-format "%3d")
-
 (delete-selection-mode 1)
 (electric-pair-mode 1)
 
-(setq-default cursor-type 'bar) 
+(setq-default cursor-type 'bar)
+
+(set-default 'truncate-lines t)
 
 (defun config () (interactive) (find-file "~/.emacs.d/init.el"))
 (global-set-key (kbd "<f10>") 'config)
@@ -54,3 +53,11 @@
 (add-to-list 'auto-mode-alist '("\\.material\\'" . json-mode))
 (add-to-list 'auto-mode-alist '("\\.scene\\'" . json-mode))
 (add-to-list 'auto-mode-alist '("\\.take\\'" . json-mode))
+
+;; Line numbering
+;; (global-linum-mode 1)
+;; (setq linum-format "%4d")
+;; The above is the built-in way (?) but much slower for large files
+(use-package nlinum)
+(global-nlinum-mode 1)
+(setq nlinum-format "%4d")
