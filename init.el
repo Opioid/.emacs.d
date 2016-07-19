@@ -25,6 +25,8 @@
 
 (set-default 'truncate-lines t)
 
+(global-set-key (kbd "C-x C-b") 'ibuffer)
+
 (defun config () (interactive) (find-file "~/.emacs.d/init.el"))
 (global-set-key (kbd "<f10>") 'config)
 
