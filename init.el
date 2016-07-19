@@ -12,7 +12,7 @@
 (when is-linux
   ;; set-default-font was the only way I tried that can load Inconsolata-g repeatedly
   ;; refreshing the config will still fail though
-  (set-default-font "Inconsolata-g 11"))
+  (set-default-font "Inconsolata_g 11"))
 
 (desktop-save-mode 1)
 (tool-bar-mode -1) 
@@ -62,13 +62,13 @@
 (add-to-list 'auto-mode-alist '("\\.take\\'" . json-mode))
 
 ;; Line numbering
-(global-linum-mode 1)
-(setq linum-format "%4d")
+;; (global-linum-mode 1)
+;; (setq linum-format "%4d")
 ;; The above is the "built-in" way but much slower for large files
 ;; The below however gives trouble with Inconsolata-g
-;; (use-package nlinum)
-;; (global-nlinum-mode 1)
-;; (setq nlinum-format "%4d")
+(use-package nlinum)
+(global-nlinum-mode 1)
+(setq nlinum-format "%4d")
 
 ;; (use-package icicles)
 ;; (icy-mode 1)
