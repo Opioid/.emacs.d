@@ -7,6 +7,8 @@
 (when is-win
   (set-frame-font "Consolas-12"))
 (when is-linux
+  ;; set-default-font was the only way I tried that can load Inconsolata-g repeatedly
+  ;; refreshing the config will still fail though
   (set-default-font "Inconsolata-g 11"))
 
 (desktop-save-mode 1)
@@ -34,7 +36,7 @@
 ;; (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 ;; (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/") t)
 (add-to-list 'package-archives
-             '("melpa-stable" . "http://stable.melpa.org/packages/") t)
+             '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 (add-to-list 'package-archives
 			 '("melpa" . "http://melpa.milkbox.net/packages/") t)
 (package-initialize)
@@ -61,3 +63,12 @@
 (use-package nlinum)
 (global-nlinum-mode 1)
 (setq nlinum-format "%4d")
+
+;; (use-package icicles)
+;; (icy-mode 1)
+;; icicles seemed a bit too much for me 
+(ido-mode t)
+
+(use-package auto-complete)
+(ac-config-default)
+
