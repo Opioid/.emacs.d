@@ -62,12 +62,13 @@
 (add-to-list 'auto-mode-alist '("\\.take\\'" . json-mode))
 
 ;; Line numbering
-;; (global-linum-mode 1)
-;; (setq linum-format "%4d")
-;; The above is the built-in way (?) but much slower for large files
-(use-package nlinum)
-(global-nlinum-mode 1)
-(setq nlinum-format "%4d")
+(global-linum-mode 1)
+(setq linum-format "%4d")
+;; The above is the "built-in" way but much slower for large files
+;; The below however gives trouble with Inconsolata-g
+;; (use-package nlinum)
+;; (global-nlinum-mode 1)
+;; (setq nlinum-format "%4d")
 
 ;; (use-package icicles)
 ;; (icy-mode 1)
