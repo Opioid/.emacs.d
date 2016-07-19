@@ -1,3 +1,6 @@
+(load "server")
+(unless (server-running-p) (server-start))
+
 (setq is-mac (equal system-type 'darwin))
 (setq is-win (equal system-type 'windows-nt))
 (setq is-linux (string-equal system-type "gnu/linux"))

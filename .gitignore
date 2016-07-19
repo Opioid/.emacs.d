@@ -1,5 +1,6 @@
 auto-save-list/
 elpa/
+server/
 ac-comphist.dat
 .emacs.desktop*
 ido.last*
