@@ -21,9 +21,7 @@
 (setq scroll-step 1) ;; keyboard scroll one line at a time
 (delete-selection-mode 1)
 (electric-pair-mode 1)
-
 (setq-default cursor-type 'bar)
-
 (set-default 'truncate-lines t)
 (defalias 'yes-or-no-p 'y-or-n-p) ;; confirm with y instead of yes<ret>
 (global-set-key (kbd "C-x C-b") 'ibuffer)
