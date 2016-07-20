@@ -25,7 +25,7 @@
 (delete-selection-mode 1)
 (electric-pair-mode 1)
 (setq-default cursor-type 'bar)
-(set-default 'truncate-lines t)
+;; (set-default 'truncate-lines t)
 (defalias 'yes-or-no-p 'y-or-n-p) ;; confirm with y instead of yes<ret>
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 
@@ -79,3 +79,5 @@
 (use-package auto-complete)
 (ac-config-default)
 
+(use-package adoc-mode)
+(add-to-list 'auto-mode-alist '("\\.adoc\\'" . adoc-mode))

@@ -4,3 +4,4 @@ server/
 ac-comphist.dat
 .emacs.desktop*
 ido.last*
+init.el~
