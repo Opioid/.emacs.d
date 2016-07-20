@@ -18,7 +18,7 @@
 (tool-bar-mode 0) 
 (setq-default tab-width 4)
 (setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
-(setq scroll-step 1) ;; keyboard scroll one line at a time
+(setq scroll-conservatively 1)
 (delete-selection-mode 1)
 (electric-pair-mode 1)
 (setq-default cursor-type 'bar)
