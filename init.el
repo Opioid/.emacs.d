@@ -18,7 +18,9 @@
 (tool-bar-mode 0) 
 (setq-default tab-width 4)
 (setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
-(setq scroll-conservatively 1)
+(setq scroll-step 1)
+(setq scroll-conservatively 10000)
+(setq auto-window-vscroll nil)
 (delete-selection-mode 1)
 (electric-pair-mode 1)
 (setq-default cursor-type 'bar)
