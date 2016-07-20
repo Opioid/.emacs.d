@@ -17,7 +17,8 @@
 (desktop-save-mode 1)
 (tool-bar-mode 0) 
 (setq-default tab-width 4)
-
+(setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
+(setq scroll-step 1) ;; keyboard scroll one line at a time
 (delete-selection-mode 1)
 (electric-pair-mode 1)
 
