@@ -15,6 +15,7 @@
   (set-default-font "Inconsolata_g 11"))
 
 (desktop-save-mode 1)
+(menu-bar-mode 0)
 (tool-bar-mode 0) 
 (setq-default tab-width 4)
 (setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
