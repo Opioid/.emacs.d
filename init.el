@@ -6,16 +6,16 @@
 (setq is-linux (string-equal system-type "gnu/linux"))
 
 (when is-mac
-	(set-frame-font "-apple-Monaco-medium-normal-normal-*-10-*-*-*-m-0-iso10646-1"))
+  (set-default-font "-apple-Monaco-medium-normal-normal-*-10-*-*-*-m-0-iso10646-1"))
 (when is-win
-  (set-frame-font "Consolas-12"))
+  (set-default-font "Consolas-12"))
 (when is-linux
-  ;; set-default-font was the only way I tried that can load Inconsolata-g repeatedly
-  ;; refreshing the config will still fail though
+  ;; (set-default-font "Inconsolata-g 11"))
+  ;; emacs cannot handle the dash in the font name, so I created a copy
   (set-default-font "Inconsolata_g 11"))
 
 (desktop-save-mode 1)
-(tool-bar-mode -1) 
+(tool-bar-mode 0) 
 (setq-default tab-width 4)
 
 (delete-selection-mode 1)
@@ -24,7 +24,7 @@
 (setq-default cursor-type 'bar)
 
 (set-default 'truncate-lines t)
-
+(defalias 'yes-or-no-p 'y-or-n-p) ;; confirm with y instead of yes<ret>
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 
 (defun config () (interactive) (find-file "~/.emacs.d/init.el"))
@@ -64,8 +64,7 @@
 ;; Line numbering
 ;; (global-linum-mode 1)
 ;; (setq linum-format "%4d")
-;; The above is the "built-in" way but much slower for large files
-;; The below however gives trouble with Inconsolata-g
+;; The above is the built-in way (?) but much slower for large files
 (use-package nlinum)
 (global-nlinum-mode 1)
 (setq nlinum-format "%4d")
