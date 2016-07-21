@@ -31,6 +31,9 @@
 (defalias 'yes-or-no-p 'y-or-n-p) ;; confirm with y instead of yes<ret>
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 
+(global-set-key (kbd "<M-up>") (lambda () (interactive) (scroll-down 4)))
+(global-set-key (kbd "<M-down>") (lambda () (interactive) (scroll-up 4)))
+
 (defun config () (interactive) (find-file "~/.emacs.d/init.el"))
 (global-set-key (kbd "<f10>") 'config)
 
