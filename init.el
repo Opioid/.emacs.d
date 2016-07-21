@@ -10,7 +10,7 @@
   (set-default-font "-apple-Monaco-medium-normal-normal-*-10-*-*-*-m-0-iso10646-1"))
 (when is-win
   (set-default-font "Consolas-12")
-  (setq buffer-face-mode-face '(:family "Arial" :height 140)))
+  (setq buffer-face-mode-face '(:family "Noto" :height 120 :weight light)))
 (when is-linux
   ;; (set-default-font "Inconsolata-g 11"))
   ;; emacs cannot handle the dash in the font name, so I created a copy
@@ -18,7 +18,8 @@
 
 (desktop-save-mode 1)
 (menu-bar-mode 0)
-(tool-bar-mode 0) 
+(tool-bar-mode 0)
+(scroll-bar-mode 0)
 (setq-default tab-width 4)
 (setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
 (setq scroll-step 1)
