@@ -14,7 +14,8 @@
 (when is-linux
   ;; (set-default-font "Inconsolata-g 11"))
   ;; emacs cannot handle the dash in the font name, so I created a copy
-  (set-default-font "Inconsolata_g 11"))
+  (set-default-font "Inconsolata_g 11")
+  (setq buffer-face-mode-face '(:family "Noto" :height 120 :weight medium)))
 
 (desktop-save-mode 1)
 (menu-bar-mode 0)
@@ -25,7 +26,6 @@
 (setq scroll-step 1)
 (setq scroll-conservatively 10000)
 (setq auto-window-vscroll nil)
-(delete-selection-mode 1)
 (electric-pair-mode 1)
 (setq-default cursor-type 'bar)
 ;; (set-default 'truncate-lines t)
@@ -90,3 +90,6 @@
 (add-hook 'adoc-mode-hook (lambda()
 							(buffer-face-mode t)
 							(nlinum-mode 0)))
+
+;; For some reason "delete-selection-mode" gets disabled again under Linux if placed near the top of the file
+(delete-selection-mode t)
