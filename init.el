@@ -1,3 +1,4 @@
+(setq debug-on-error nil)
 (load "server")
 (unless (server-running-p) (server-start))
 
@@ -8,7 +9,8 @@
 (when is-mac
   (set-default-font "-apple-Monaco-medium-normal-normal-*-10-*-*-*-m-0-iso10646-1"))
 (when is-win
-  (set-default-font "Consolas-12"))
+  (set-default-font "Consolas-12")
+  (setq buffer-face-mode-face '(:family "Arial" :height 140)))
 (when is-linux
   ;; (set-default-font "Inconsolata-g 11"))
   ;; emacs cannot handle the dash in the font name, so I created a copy
@@ -81,3 +83,6 @@
 
 (use-package adoc-mode)
 (add-to-list 'auto-mode-alist '("\\.adoc\\'" . adoc-mode))
+(add-hook 'adoc-mode-hook (lambda()
+							(buffer-face-mode t)
+							(nlinum-mode 0)))
