@@ -1,4 +1,4 @@
-(setq debug-on-error nil)
+ (setq debug-on-error nil)
 (load "server")
 (unless (server-running-p) (server-start))
 
@@ -82,8 +82,11 @@
 ;; icicles seemed a bit too much for me 
 (ido-mode t)
 
-(use-package auto-complete)
-(ac-config-default)
+;; (use-package auto-complete)
+;; (ac-config-default)
+
+(use-package company)
+(add-hook 'after-init-hook 'global-company-mode)
 
 (use-package adoc-mode)
 (add-to-list 'auto-mode-alist '("\\.adoc\\'" . adoc-mode))
