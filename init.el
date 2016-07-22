@@ -1,4 +1,4 @@
- (setq debug-on-error nil)
+(setq debug-on-error nil)
 (load "server")
 (unless (server-running-p) (server-start))
 
@@ -81,9 +81,6 @@
 ;; (icy-mode 1)
 ;; icicles seemed a bit too much for me 
 (ido-mode t)
-
-;; (use-package auto-complete)
-;; (ac-config-default)
 
 (use-package company)
 (add-hook 'after-init-hook 'global-company-mode)
