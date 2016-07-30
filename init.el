@@ -17,6 +17,7 @@
   (set-default-font "Inconsolata_g 11")
   (setq buffer-face-mode-face '(:family "Noto" :height 120 :weight medium)))
 
+(setq gc-cons-threshold 20000000) ;; Garbage collection to ca. 20 MB
 (desktop-save-mode 1)
 (menu-bar-mode 0)
 (tool-bar-mode 0)
@@ -78,10 +79,25 @@
 (global-nlinum-mode 1)
 (setq nlinum-format "%4d")
 
-;; (use-package icicles)
-;; (icy-mode 1)
-;; icicles seemed a bit too much for me 
+(use-package flx-ido)
 (ido-mode t)
+(ido-everywhere t)
+(flx-ido-mode t)
+;; disable ido faces to see flx highlights.
+(setq ido-enable-flex-matching t)
+(setq ido-use-faces nil)
+
+(use-package ido-ubiquitous)
+(ido-ubiquitous-mode t)
+
+(use-package smex)
+;; Can be omitted. This might cause a (minimal) delay
+;; when Smex is auto-initialized on its first run.
+(smex-initialize) 
+(global-set-key (kbd "M-x") 'smex)
+(global-set-key (kbd "M-X") 'smex-major-mode-commands)
+;; This is your old M-x.
+(global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
 
 (use-package company)
 (add-hook 'after-init-hook 'global-company-mode)
