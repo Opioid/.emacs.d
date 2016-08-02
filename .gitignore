@@ -6,3 +6,4 @@ server/
 ac-comphist.dat
 ido.last*
 init.el~
+smex-items
