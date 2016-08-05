@@ -29,6 +29,7 @@
 (setq scroll-conservatively 10000)
 (setq auto-window-vscroll nil)
 (electric-pair-mode 1)
+(show-paren-mode 1)
 (setq-default cursor-type 'bar)
 ;; (set-default 'truncate-lines t)
 (defalias 'yes-or-no-p 'y-or-n-p) ;; confirm with y instead of yes<ret>
@@ -113,6 +114,7 @@
 
 (use-package highlight-thing)
 (global-highlight-thing-mode)
+(set-face-attribute 'highlight-thing nil :inherit (quote lazy-highlight))
 
 ;; For some reason "delete-selection-mode" gets disabled again under Linux if placed near the top of the file
 (delete-selection-mode t)
