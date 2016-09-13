@@ -47,6 +47,15 @@
   (load-file "~/.emacs.d/init.el"))
 (global-set-key (kbd "<f9>") 'reload-config)
 
+;; Auto-wrap search
+(defadvice isearch-search (after isearch-no-fail activate)
+  (unless isearch-success
+    (ad-disable-advice 'isearch-search 'after 'isearch-no-fail)
+    (ad-activate 'isearch-search)
+    (isearch-repeat (if isearch-forward 'forward))
+    (ad-enable-advice 'isearch-search 'after 'isearch-no-fail)
+    (ad-activate 'isearch-search)))
+
 (require 'package)
 (setq package-enable-at-startup nil)
 ;; (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
