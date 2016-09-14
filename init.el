@@ -114,7 +114,7 @@
 
 (use-package highlight-thing)
 (global-highlight-thing-mode)
-(set-face-attribute 'highlight-thing nil :inherit (quote lazy-highlight))
+;; (set-face-attribute 'highlight-thing nil :inherit (quote lazy-highlight))
 
 ;; For some reason "delete-selection-mode" gets disabled again under Linux if placed near the top of the file
 (delete-selection-mode t)
