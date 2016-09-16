@@ -19,6 +19,7 @@
 
 (setq gc-cons-threshold 20000000) ;; Garbage collection to ca. 20 MB
 (desktop-save-mode 1)
+(global-auto-revert-mode t) ;; Update files changed another process
 (menu-bar-mode 0)
 (tool-bar-mode 0)
 (scroll-bar-mode 0)
