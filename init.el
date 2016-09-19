@@ -23,6 +23,7 @@
 (menu-bar-mode 0)
 (tool-bar-mode 0)
 (scroll-bar-mode 0)
+(setq horizontal-scroll-bars nil)
 (setq-default tab-width 4)
 (setq sgml-basic-offset 4) ;; In my case basically tab-width for HTML
 (setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
