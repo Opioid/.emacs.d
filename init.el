@@ -20,6 +20,11 @@
 (setq gc-cons-threshold 20000000) ;; Garbage collection to ca. 20 MB
 (desktop-save-mode 1)
 (global-auto-revert-mode t) ;; Update files changed another process
+(setq
+   backup-by-copying t      ; don't clobber symlinks
+   backup-directory-alist
+    '(("." . "~/.saves")))    ; don't litter my fs tree
+
 (menu-bar-mode 0)
 (tool-bar-mode 0)
 (scroll-bar-mode 0)
@@ -137,17 +142,4 @@
 
 ;; For some reason "delete-selection-mode" gets disabled again under Linux if placed near the top of the file
 (delete-selection-mode t)
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   (quote
-	(markdown-mode use-package smex nlinum monokai-theme json-mode ido-vertical-mode ido-ubiquitous icicles highlight-thing flx-ido company auto-complete adoc-mode))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+
