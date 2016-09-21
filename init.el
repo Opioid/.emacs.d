@@ -104,6 +104,7 @@
 
 (use-package ido-vertical-mode)
 (ido-vertical-mode t)
+(setq ido-vertical-define-keys 'C-n-C-p-up-down-left-right)
 
 (use-package smex)
 ;; Can be omitted. This might cause a (minimal) delay
@@ -143,7 +144,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-	(use-package smex nlinum monokai-theme json-mode ido-vertical-mode ido-ubiquitous icicles highlight-thing flx-ido company auto-complete adoc-mode))))
+	(markdown-mode use-package smex nlinum monokai-theme json-mode ido-vertical-mode ido-ubiquitous icicles highlight-thing flx-ido company auto-complete adoc-mode))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
