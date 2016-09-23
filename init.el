@@ -17,7 +17,7 @@
   (set-default-font "Inconsolata_g 11")
   (setq buffer-face-mode-face '(:family "Noto" :height 120 :weight medium)))
 
-(setq-default line-spacing 2)
+(setq-default line-spacing 1)
 
 (setq gc-cons-threshold 20000000) ;; Garbage collection to ca. 20 MB
 (desktop-save-mode 1)
