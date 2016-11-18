@@ -89,6 +89,7 @@
 (add-to-list 'auto-mode-alist '("\\.material\\'" . json-mode))
 (add-to-list 'auto-mode-alist '("\\.scene\\'" . json-mode))
 (add-to-list 'auto-mode-alist '("\\.take\\'" . json-mode))
+(add-to-list 'auto-mode-alist '("\\.effect\\'" . json-mode))
 
 ;; Line numbering
 ;; (global-linum-mode 1)
