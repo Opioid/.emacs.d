@@ -91,6 +91,9 @@
 (add-to-list 'auto-mode-alist '("\\.take\\'" . json-mode))
 (add-to-list 'auto-mode-alist '("\\.effect\\'" . json-mode))
 
+;; C++ files
+(add-to-list 'auto-mode-alist '("\\.inl\\'" . c++-mode))
+
 ;; Line numbering
 ;; (global-linum-mode 1)
 ;; (setq linum-format "%4d")
