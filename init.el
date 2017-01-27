@@ -94,6 +94,10 @@
 ;; C++ files
 (add-to-list 'auto-mode-alist '("\\.inl\\'" . c++-mode))
 
+;; (use-package cmake-mode)
+;; (add-to-list 'auto-mode-alist '("CMakeLists\\.txt\\'" . cmake-mode))
+;; (add-to-list 'auto-mode-alist '("\\.cmake\\'" . cmake-mode))
+
 ;; Line numbering
 ;; (global-linum-mode 1)
 ;; (setq linum-format "%4d")
@@ -129,11 +133,11 @@
 (use-package company)
 (add-hook 'after-init-hook 'global-company-mode)
 
-;;(use-package adoc-mode)
-;;(add-to-list 'auto-mode-alist '("\\.adoc\\'" . adoc-mode))
-;;(add-hook 'adoc-mode-hook (lambda()
-;;							(buffer-face-mode t)
-;;							(nlinum-mode 0)))
+(use-package adoc-mode)
+(add-to-list 'auto-mode-alist '("\\.adoc\\'" . adoc-mode))
+(add-hook 'adoc-mode-hook (lambda()
+						   (buffer-face-mode t)
+						   (nlinum-mode 0)))
 
 (use-package markdown-mode
   :ensure t
