@@ -147,6 +147,10 @@
          ("\\.markdown\\'" . markdown-mode))
   :init (setq markdown-command "multimarkdown"))
 
+(add-hook 'org-mode-hook (lambda()
+						   (nlinum-mode 0)))
+(setq org-support-shift-select t)
+
 ;;(use-package highlight-thing)
 ;;(global-highlight-thing-mode)
 
