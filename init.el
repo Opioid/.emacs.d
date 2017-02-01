@@ -133,12 +133,6 @@
 (use-package company)
 (add-hook 'after-init-hook 'global-company-mode)
 
-(use-package adoc-mode)
-(add-to-list 'auto-mode-alist '("\\.adoc\\'" . adoc-mode))
-(add-hook 'adoc-mode-hook (lambda()
-						   (buffer-face-mode t)
-						   (nlinum-mode 0)))
-
 (use-package markdown-mode
   :ensure t
   :commands (markdown-mode gfm-mode)
