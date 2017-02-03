@@ -16,7 +16,8 @@
   ;; (set-default-font "Inconsolata-g 11"))
   ;; emacs cannot handle the dash in the font name, so I created a copy
   (set-default-font "Inconsolata_g 11")
-  (setq buffer-face-mode-face '(:family "Noto" :height 120 :weight medium)))
+  (setq buffer-face-mode-face '(:family "Noto" :height 120 :weight medium))
+  )
 
 (setq-default line-spacing 1)
 
@@ -24,9 +25,10 @@
 (desktop-save-mode 1)
 (global-auto-revert-mode t) ;; Update files changed fro manother process
 (setq
-   backup-by-copying t      ; don't clobber symlinks
-   backup-directory-alist
-    '(("." . "~/.saves")))    ; don't litter my fs tree
+ backup-by-copying t ; don't clobber symlinks
+ backup-directory-alist
+ '(("." . "~/.saves")) ; don't litter my fs tree
+ )   
 
 (menu-bar-mode 0)
 (tool-bar-mode 0)
@@ -56,7 +58,8 @@
 (defun reload-config ()
   "reload your .emacs file without restarting Emacs"
   (interactive)
-  (load-file "~/.emacs.d/init.el"))
+  (load-file "~/.emacs.d/init.el")
+  )
 (global-set-key (kbd "<f9>") 'reload-config)
 
 ;; Auto-wrap search
@@ -66,7 +69,9 @@
     (ad-activate 'isearch-search)
     (isearch-repeat (if isearch-forward 'forward))
     (ad-enable-advice 'isearch-search 'after 'isearch-no-fail)
-    (ad-activate 'isearch-search)))
+    (ad-activate 'isearch-search)
+	)
+  )
 
 (require 'package)
 (setq package-enable-at-startup nil)
@@ -79,7 +84,8 @@
 ;; Bootstrap 'use-package'
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
-  (package-install 'use-package))
+  (package-install 'use-package)
+  )
 
 (setq use-package-always-ensure t)
 
@@ -139,19 +145,26 @@
   :commands (markdown-mode gfm-mode)
   :mode (("README\\.md\\'" . gfm-mode)
          ("\\.md\\'" . markdown-mode)
-         ("\\.markdown\\'" . markdown-mode))
-  :init (setq markdown-command "multimarkdown"))
+         ("\\.markdown\\'" . markdown-mode)
+		 )
+  :init (setq markdown-command "multimarkdown")
+  )
 
 (require 'ispell)
 ;; (setq ispell-extra-args '("--sug-mode=fast"))
 
 (add-hook 'org-mode-hook (lambda()
 						   (nlinum-mode 0)
-		 				   (flyspell-mode 1)))
+		 				   (flyspell-mode 1)
+						   )
+		  )
+
 (setq org-support-shift-select t)
 
 (add-hook 'image-mode-hook (lambda()
-							 (nlinum-mode 0)))
+							 (nlinum-mode 0)
+							 )
+		  )
 
 ;;(use-package highlight-thing)
 ;;(global-highlight-thing-mode)
@@ -164,18 +177,3 @@
 
 ;; For some reason "delete-selection-mode" gets disabled again under Linux if placed near the top of the file
 (delete-selection-mode t)
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(delete-selection-mode nil)
- '(package-selected-packages
-   (quote
-	(use-package smex nlinum monokai-theme markdown-mode json-mode ido-vertical-mode ido-ubiquitous highlight-symbol flx-ido company adoc-mode))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
