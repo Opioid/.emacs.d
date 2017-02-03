@@ -10,7 +10,8 @@
   (set-default-font "-apple-Monaco-medium-normal-normal-*-10-*-*-*-m-0-iso10646-1"))
 (when is-win
   (set-default-font "Consolas-12")
-  (setq buffer-face-mode-face '(:family "Noto" :height 120 :weight light)))
+  (setq buffer-face-mode-face '(:family "Noto" :height 120 :weight light))
+  (add-to-list 'exec-path "C:/Program Files (x86)/Aspell/bin/"))
 (when is-linux
   ;; (set-default-font "Inconsolata-g 11"))
   ;; emacs cannot handle the dash in the font name, so I created a copy
@@ -141,8 +142,11 @@
          ("\\.markdown\\'" . markdown-mode))
   :init (setq markdown-command "multimarkdown"))
 
+(require 'ispell)
+
 (add-hook 'org-mode-hook (lambda()
-						   (nlinum-mode 0)))
+						   (nlinum-mode 0)
+						   (flyspell-mode 1)))
 (setq org-support-shift-select t)
 
 ;;(use-package highlight-thing)
