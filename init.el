@@ -143,11 +143,15 @@
   :init (setq markdown-command "multimarkdown"))
 
 (require 'ispell)
+;; (setq ispell-extra-args '("--sug-mode=fast"))
 
 (add-hook 'org-mode-hook (lambda()
 						   (nlinum-mode 0)
-						   (flyspell-mode 1)))
+		 				   (flyspell-mode 1)))
 (setq org-support-shift-select t)
+
+(add-hook 'image-mode-hook (lambda()
+							 (nlinum-mode 0)))
 
 ;;(use-package highlight-thing)
 ;;(global-highlight-thing-mode)
