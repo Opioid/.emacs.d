@@ -52,10 +52,10 @@
 (global-set-key (kbd "<M-up>") (lambda () (interactive) (scroll-down 4)))
 (global-set-key (kbd "<M-down>") (lambda () (interactive) (scroll-up 4)))
 
-(defun config () (interactive) (find-file "~/.emacs.d/init.el"))
+(defun config() (interactive) (find-file "~/.emacs.d/init.el"))
 (global-set-key (kbd "<f10>") 'config)
 
-(defun reload-config ()
+(defun reload-config()
   "reload your .emacs file without restarting Emacs"
   (interactive)
   (load-file "~/.emacs.d/init.el")
@@ -152,11 +152,14 @@
 (require 'ispell)
 ;; (setq ispell-extra-args '("--sug-mode=fast"))
 
-(add-hook 'org-mode-hook (lambda()
-						   (nlinum-mode 0)
-		 				   (flyspell-mode 1)
-						   )
-		  )
+(defun docmode()
+  (nlinum-mode 0)
+  (flyspell-mode 1)
+  ) 
+
+(add-hook 'org-mode-hook 'docmode)
+(add-hook 'gfm-mode-hook 'docmode)
+(add-hook 'markdown-mode-hook 'docmode)
 
 (setq org-support-shift-select t)
 
