@@ -163,10 +163,7 @@
 
 (setq org-support-shift-select t)
 
-(add-hook 'image-mode-hook (lambda()
-							 (nlinum-mode 0)
-							 )
-		  )
+(add-hook 'image-mode-hook (lambda() (nlinum-mode 0)))
 
 ;;(use-package highlight-thing)
 ;;(global-highlight-thing-mode)
