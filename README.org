@@ -1,0 +1,3 @@
+* init.el
+
+My emacs init file. Place in ~/.emacs.d.
