@@ -139,6 +139,9 @@
 (use-package company)
 (add-hook 'after-init-hook 'global-company-mode)
 
+(use-package anzu)
+(global-anzu-mode t)
+
 (use-package markdown-mode
   :ensure t
   :commands (markdown-mode gfm-mode)
