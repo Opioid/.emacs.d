@@ -76,7 +76,6 @@
 (require 'package)
 (setq package-enable-at-startup nil)
 ;; (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
-;; (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/") t)
 (add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 (package-initialize)
 
@@ -99,6 +98,12 @@
 
 ;; C++ files
 (add-to-list 'auto-mode-alist '("\\.inl\\'" . c++-mode))
+
+;; Could not find glsl mode
+;; (use-package glsl-mode)
+(add-to-list 'auto-mode-alist '("\\.vert\\'" . c++-mode))
+(add-to-list 'auto-mode-alist '("\\.frag\\'" . c++-mode))
+(add-to-list 'auto-mode-alist '("\\.glsl\\'" . c++-mode))
 
 ;; (use-package cmake-mode)
 ;; (add-to-list 'auto-mode-alist '("CMakeLists\\.txt\\'" . cmake-mode))
