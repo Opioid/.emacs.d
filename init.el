@@ -43,11 +43,11 @@
 (setq scroll-step 1)
 (setq scroll-conservatively 10000)
 (setq auto-window-vscroll nil)
-(setq sentence-end-double-space nil)
+;; (setq sentence-end-double-space nil)
 (electric-pair-mode 1)
 (show-paren-mode 1)
 (setq-default cursor-type 'bar)
-;; (set-default 'truncate-lines t)
+(set-default 'truncate-lines t)
 (defalias 'yes-or-no-p 'y-or-n-p) ;; confirm with y instead of yes<ret>
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 
@@ -172,6 +172,7 @@
 (add-hook 'markdown-mode-hook 'docmode)
 
 (setq org-support-shift-select t)
+(setq org-startup-folded nil)
 
 (add-hook 'image-mode-hook (lambda() (nlinum-mode 0)))
 
