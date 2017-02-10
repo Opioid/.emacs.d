@@ -36,12 +36,14 @@
 (setq horizontal-scroll-bars nil)
 ;; This was neccessary to get rid of the horizontal scroll-bars
 ;; (modify-all-frames-parameters '((horizontal-scroll-bars . nil)))
+
 (setq-default tab-width 4)
 (setq sgml-basic-offset 4) ;; In my case basically tab-width for HTML
 (setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
 (setq scroll-step 1)
 (setq scroll-conservatively 10000)
 (setq auto-window-vscroll nil)
+(setq sentence-end-double-space nil)
 (electric-pair-mode 1)
 (show-paren-mode 1)
 (setq-default cursor-type 'bar)
