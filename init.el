@@ -37,8 +37,10 @@
 ;; This was neccessary to get rid of the horizontal scroll-bars
 ;; (modify-all-frames-parameters '((horizontal-scroll-bars . nil)))
 
+(setq-default indent-tabs-mode t)
 (setq-default tab-width 4)
 (setq sgml-basic-offset 4) ;; In my case basically tab-width for HTML
+(setq-default c-basic-offset 4)
 (setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
 (setq scroll-step 1)
 (setq scroll-conservatively 10000)
