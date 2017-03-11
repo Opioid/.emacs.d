@@ -185,7 +185,9 @@
 ;;(global-auto-highlight-symbol-mode t)
 
 (use-package highlight-symbol)
-(global-set-key [f3] 'highlight-symbol)
+(global-set-key [f5] 'highlight-symbol)
+(global-set-key [f4] 'highlight-symbol-prev)
+(global-set-key [f6] 'highlight-symbol-next)
 ;; (global-set-key [double-down-mouse-1] 'highlight-symbol)
 
 ;; For some reason "delete-selection-mode" gets disabled again under Linux if placed near the top of the file
