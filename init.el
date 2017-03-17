@@ -134,12 +134,13 @@
 (setq ido-enable-flex-matching t)
 (setq ido-use-faces nil)
 
-(use-package ido-ubiquitous)
-(ido-ubiquitous-mode t)
-
 (use-package ido-vertical-mode)
 (ido-vertical-mode t)
 (setq ido-vertical-define-keys 'C-n-C-p-up-down-left-right)
+
+(use-package ido-ubiquitous)
+(ido-ubiquitous-mode t)
+(setq ido-ubiquitous-auto-update-overrides t)
 
 (use-package smex)
 ;; Can be omitted. This might cause a (minimal) delay
