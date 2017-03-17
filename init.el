@@ -103,6 +103,11 @@
 ;; C++ files
 (add-to-list 'auto-mode-alist '("\\.inl\\'" . c++-mode))
 
+(add-hook 'c-mode-common-hook
+  (lambda() 
+    (local-set-key [f4] 'ff-find-other-file)))
+
+
 ;; Could not find glsl mode
 ;; (use-package glsl-mode)
 (add-to-list 'auto-mode-alist '("\\.vert\\'" . c++-mode))
@@ -185,10 +190,10 @@
 ;;(global-auto-highlight-symbol-mode t)
 
 (use-package highlight-symbol)
-(global-set-key [(control f4)] 'highlight-symbol)
-(global-set-key [(shift f4)] 'highlight-symbol-prev)
-(global-set-key [f4] 'highlight-symbol-next)
-(global-set-key [(meta f4)] 'highlight-symbol-query-replace)
+(global-set-key [(control f3)] 'highlight-symbol)
+(global-set-key [(shift f3)] 'highlight-symbol-prev)
+(global-set-key [f3] 'highlight-symbol-next)
+(global-set-key [(meta f3)] 'highlight-symbol-query-replace)
 ;; (global-set-key [double-down-mouse-1] 'highlight-symbol)
 
 ;; For some reason "delete-selection-mode" gets disabled again under Linux if placed near the top of the file
