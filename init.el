@@ -104,9 +104,17 @@
 (add-to-list 'auto-mode-alist '("\\.inl\\'" . c++-mode))
 
 (add-hook 'c-mode-common-hook
-  (lambda() 
-    (local-set-key [f4] 'ff-find-other-file)))
+		  (lambda() 
+			(local-set-key [f4] 'ff-find-other-file)))
 
+;; Add underscore to word definition
+(modify-syntax-entry ?_ "w" (standard-syntax-table))
+(add-hook 'c-mode-common-hook
+		  (lambda ()
+			(modify-syntax-entry ?_ "w")))
+(add-hook 'js-mode-hook
+		  (lambda ()
+			(modify-syntax-entry ?_ "w")))
 
 ;; Could not find glsl mode
 ;; (use-package glsl-mode)
