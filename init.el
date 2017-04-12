@@ -190,7 +190,13 @@
 (setq org-support-shift-select t)
 (setq org-startup-folded nil)
 
-(add-hook 'image-mode-hook (lambda() (nlinum-mode 0)))
+(auto-image-file-mode t)
+(add-hook 'image-mode-hook
+		  (lambda()
+			(nlinum-mode 0)
+			(company-mode 0)
+			(anzu-mode 0)
+			))
 
 ;;(use-package highlight-thing)
 ;;(global-highlight-thing-mode)
