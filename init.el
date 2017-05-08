@@ -121,6 +121,7 @@
 (add-to-list 'auto-mode-alist '("\\.vert\\'" . c++-mode))
 (add-to-list 'auto-mode-alist '("\\.frag\\'" . c++-mode))
 (add-to-list 'auto-mode-alist '("\\.glsl\\'" . c++-mode))
+(add-to-list 'auto-mode-alist '("\\.brdf\\'" . c++-mode))
 
 ;; (use-package cmake-mode)
 ;; (add-to-list 'auto-mode-alist '("CMakeLists\\.txt\\'" . cmake-mode))
@@ -213,3 +214,4 @@
 
 ;; For some reason "delete-selection-mode" gets disabled again under Linux if placed near the top of the file
 (delete-selection-mode t)
+
