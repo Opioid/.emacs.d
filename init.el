@@ -187,6 +187,7 @@
 (add-hook 'org-mode-hook 'docmode)
 (add-hook 'gfm-mode-hook 'docmode)
 (add-hook 'markdown-mode-hook 'docmode)
+(add-hook 'text-mode-hook 'docmode)
 
 (setq org-support-shift-select t)
 (setq org-startup-folded nil)
