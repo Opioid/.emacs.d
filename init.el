@@ -182,6 +182,8 @@
 (defun docmode()
   (nlinum-mode 0)
   (flyspell-mode 1)
+  (setq truncate-lines nil)
+  (setq word-wrap 1)
   ) 
 
 (add-hook 'org-mode-hook 'docmode)
@@ -215,4 +217,3 @@
 
 ;; For some reason "delete-selection-mode" gets disabled again under Linux if placed near the top of the file
 (delete-selection-mode t)
-
