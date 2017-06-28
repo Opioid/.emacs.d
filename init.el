@@ -182,7 +182,7 @@
 ;; (setq ispell-extra-args '("--sug-mode=fast"))
 
 (use-package ag)
-;;(setq ag-highlight-search t)
+(setq ag-highlight-search t)
 
 (defun docmode()
   (nlinum-mode 0)
