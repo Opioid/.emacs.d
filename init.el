@@ -81,8 +81,8 @@
 
 (require 'package)
 (setq package-enable-at-startup nil)
-;; (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
-(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
+;; (add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 (package-initialize)
 
 ;; Bootstrap 'use-package'
@@ -207,18 +207,15 @@
 			(anzu-mode 0)
 			))
 
-;;(use-package highlight-thing)
-;;(global-highlight-thing-mode)
-
-;;(use-package auto-highlight-symbol)
-;;(global-auto-highlight-symbol-mode t)
+;; (use-package highlight-thing)
+;; (global-highlight-thing-mode)
 
 (use-package highlight-symbol)
 (global-set-key [(control f3)] 'highlight-symbol)
 (global-set-key [(shift f3)] 'highlight-symbol-prev)
 (global-set-key [f3] 'highlight-symbol-next)
 (global-set-key [(meta f3)] 'highlight-symbol-query-replace)
-;; (global-set-key [double-down-mouse-1] 'highlight-symbol)
 
 ;; For some reason "delete-selection-mode" gets disabled again under Linux if placed near the top of the file
 (delete-selection-mode t)
+
