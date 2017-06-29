@@ -6,17 +6,19 @@
 (setq is-win (equal system-type 'windows-nt))
 (setq is-linux (string-equal system-type "gnu/linux"))
 
-(when is-mac
-  (set-default-font "-apple-Monaco-medium-normal-normal-*-10-*-*-*-m-0-iso10646-1"))
-(when is-win
-  (set-default-font "Consolas-12")
-  (setq buffer-face-mode-face '(:family "Noto" :height 120 :weight light))
-  (add-to-list 'exec-path "C:/Program Files (x86)/Aspell/bin/"))
 (when is-linux
   ;; (set-default-font "Inconsolata-g 11"))
   ;; emacs cannot handle the dash in the font name, so I created a copy
   (set-default-font "Inconsolata_g 11")
   (setq buffer-face-mode-face '(:family "Noto" :height 120 :weight medium))
+  )
+(when is-mac
+  (set-default-font "-apple-Monaco-medium-normal-normal-*-10-*-*-*-m-0-iso10646-1")
+  )
+(when is-win
+  (set-default-font "Consolas-12")
+  (setq buffer-face-mode-face '(:family "Noto" :height 120 :weight light))
+  (add-to-list 'exec-path "C:/Program Files (x86)/Aspell/bin/")
   )
 
 (setq-default line-spacing 1)
@@ -81,8 +83,13 @@
 
 (require 'package)
 (setq package-enable-at-startup nil)
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
-;; (add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+;;(when is-linux
+  (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+;;  )
+;;(when is-win
+;;  (add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+;;  )
+
 (package-initialize)
 
 ;; Bootstrap 'use-package'
@@ -218,4 +225,3 @@
 
 ;; For some reason "delete-selection-mode" gets disabled again under Linux if placed near the top of the file
 (delete-selection-mode t)
-
