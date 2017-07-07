@@ -109,6 +109,28 @@
 (add-to-list 'auto-mode-alist '("\\.take\\'" . json-mode))
 (add-to-list 'auto-mode-alist '("\\.effect\\'" . json-mode))
 
+;; Color HTML style hex-color strings 
+(defvar hexcolor-keywords
+   '(("#[[:xdigit:]]\\{6\\}"
+      (0 (put-text-property (match-beginning 0)
+                            (match-end 0)
+							'face (list :background (match-string-no-properties 0)
+										:foreground (if (>= (apply '+ (x-color-values 
+																	   (match-string-no-properties 0)))
+															(* (apply '+ (x-color-values "white")) .6))
+														"black" ;; light bg, dark text
+													  "white" ;; dark bg, light text
+													  )
+
+
+										))))))
+
+(defun hexcolor-add-to-font-lock ()
+   (font-lock-add-keywords nil hexcolor-keywords))
+
+ (add-hook 'json-mode-hook 'hexcolor-add-to-font-lock)
+
+
 ;; C++ files
 (add-to-list 'auto-mode-alist '("\\.inl\\'" . c++-mode))
 
