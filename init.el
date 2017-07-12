@@ -210,6 +210,9 @@
 (require 'ispell)
 ;; (setq ispell-extra-args '("--sug-mode=fast"))
 
+(use-package expand-region)
+(global-set-key (kbd "C-=") 'er/expand-region)
+
 (use-package ag)
 (setq ag-highlight-search t)
 
@@ -247,3 +250,17 @@
 
 ;; For some reason "delete-selection-mode" gets disabled again under Linux if placed near the top of the file
 (delete-selection-mode t)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+	(expand-region use-package smex pkg-info nlinum monokai-theme markdown-mode json-mode ido-vertical-mode ido-ubiquitous highlight-symbol flx-ido company anzu ag))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
