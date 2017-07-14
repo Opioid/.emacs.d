@@ -216,9 +216,6 @@
   :init (setq markdown-command "multimarkdown")
   )
 
-(require 'ispell)
-;; (setq ispell-extra-args '("--sug-mode=fast"))
-
 (use-package expand-region)
 (global-set-key (kbd "C-=") 'er/expand-region)
 
@@ -237,8 +234,29 @@
 (add-hook 'markdown-mode-hook 'docmode)
 (add-hook 'text-mode-hook 'docmode)
 
+;; org mode
 (setq org-support-shift-select t)
 (setq org-startup-folded nil)
+
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((python . t)))
+
+(setq org-confirm-babel-evaluate nil)
+
+;; NO spell check for embedded snippets
+(defadvice org-mode-flyspell-verify (after org-mode-flyspell-verify-hack activate)
+  (let* ((rlt ad-return-value)
+         (begin-regexp "^[ \t]*#\\+begin_\\(src\\|html\\|latex\\|example\\|quote\\)")
+         (end-regexp "^[ \t]*#\\+end_\\(src\\|html\\|latex\\|example\\|quote\\)")
+         (case-fold-search t)
+         b e)
+    (when ad-return-value
+      (save-excursion
+        (setq b (re-search-backward begin-regexp nil t))
+        (if b (setq e (re-search-forward end-regexp nil t))))
+      (if (and b e (< (point) e)) (setq rlt nil)))
+    (setq ad-return-value rlt)))
 
 (auto-image-file-mode t)
 (add-hook 'image-mode-hook
