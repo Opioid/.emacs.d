@@ -81,6 +81,15 @@
 	)
   )
 
+;; Create empty buffers with expected major mode
+;; https://emacs.stackexchange.com/questions/2497/how-to-get-buffers-not-just-files-to-honor-auto-mode-alist/2555#2555
+;; http://thread.gmane.org/gmane.emacs.devel/115520/focus=115794
+(setq-default major-mode
+			  (lambda () (if buffer-file-name
+							 (fundamental-mode)
+						   (let ((buffer-file-name (buffer-name)))
+							 (set-auto-mode)))))
+
 (require 'package)
 (setq package-enable-at-startup nil)
 ;;(when is-linux
@@ -178,7 +187,7 @@
 (ido-vertical-mode t)
 (setq ido-vertical-define-keys 'C-n-C-p-up-down-left-right)
 
-(use-package ido-ubiquitous)
+(use-package ido-completing-read+)
 (ido-ubiquitous-mode t)
 (setq ido-ubiquitous-auto-update-overrides t)
 
@@ -250,17 +259,3 @@
 
 ;; For some reason "delete-selection-mode" gets disabled again under Linux if placed near the top of the file
 (delete-selection-mode t)
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   (quote
-	(expand-region use-package smex pkg-info nlinum monokai-theme markdown-mode json-mode ido-vertical-mode ido-ubiquitous highlight-symbol flx-ido company anzu ag))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
