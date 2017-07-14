@@ -222,6 +222,8 @@
 (use-package ag)
 (setq ag-highlight-search t)
 
+(require 'flyspell)
+
 (defun docmode()
   (nlinum-mode 0)
   (flyspell-mode 1)
