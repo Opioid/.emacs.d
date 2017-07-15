@@ -237,7 +237,7 @@
 (add-hook 'text-mode-hook 'docmode)
 
 ;; =============================================================================
-;; org mode
+;; org-mode
 ;; =============================================================================
 (setq org-support-shift-select t)
 (setq org-startup-folded nil)
@@ -271,6 +271,16 @@
     (org-redisplay-inline-images)))
 
 (add-hook 'org-babel-after-execute-hook 'shk-fix-inline-images)
+
+;; Make meta up/down behave as in all other modes (as per an earlier global setting)
+;; and re-assign org-metadown/-metaup to control meta down/up keys
+(add-hook 'org-mode-hook (lambda ()
+						   (local-set-key [(meta up)] (lambda () (interactive) (scroll-down 4)))
+						   (local-set-key [(meta down)] (lambda () (interactive) (scroll-up 4)))
+						   (local-set-key [(control meta down)] 'org-metadown)
+						   (local-set-key [(control meta up)] 'org-metaup)
+						   )
+		  )
 
 ;; =============================================================================
 
