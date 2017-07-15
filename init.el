@@ -236,7 +236,9 @@
 (add-hook 'markdown-mode-hook 'docmode)
 (add-hook 'text-mode-hook 'docmode)
 
+;; =============================================================================
 ;; org mode
+;; =============================================================================
 (setq org-support-shift-select t)
 (setq org-startup-folded nil)
 
@@ -245,6 +247,9 @@
  '((python . t)))
 
 (setq org-confirm-babel-evaluate nil)
+
+;; fontify code in code blocks
+(setq org-src-fontify-natively t)
 
 ;; NO spell check for embedded snippets
 (defadvice org-mode-flyspell-verify (after org-mode-flyspell-verify-hack activate)
@@ -259,6 +264,15 @@
         (if b (setq e (re-search-forward end-regexp nil t))))
       (if (and b e (< (point) e)) (setq rlt nil)))
     (setq ad-return-value rlt)))
+
+;; auto-refresh inline images
+(defun shk-fix-inline-images ()
+  (when org-inline-image-overlays
+    (org-redisplay-inline-images)))
+
+(add-hook 'org-babel-after-execute-hook 'shk-fix-inline-images)
+
+;; =============================================================================
 
 (auto-image-file-mode t)
 (add-hook 'image-mode-hook
