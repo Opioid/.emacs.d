@@ -268,6 +268,8 @@
 ;; fontify code in code blocks
 (setq org-src-fontify-natively t)
 
+(setq org-src-tab-acts-natively t)
+
 ;; NO spell check for embedded snippets
 (defadvice org-mode-flyspell-verify (after org-mode-flyspell-verify-hack activate)
   (let* ((rlt ad-return-value)
