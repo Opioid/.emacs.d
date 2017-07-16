@@ -256,19 +256,16 @@
 ;;==============================================================================
 ;; org-mode
 ;;==============================================================================
-(setq org-support-shift-select t)
-(setq org-startup-folded nil)
+(setq org-support-shift-select t
+	  org-startup-folded nil
+	  org-confirm-babel-evaluate nil
+	  org-src-fontify-natively t
+	  org-edit-src-content-indentation 0
+	  org-src-tab-acts-natively t)
 
 (org-babel-do-load-languages
  'org-babel-load-languages
  '((python . t)))
-
-(setq org-confirm-babel-evaluate nil)
-
-;; fontify code in code blocks
-(setq org-src-fontify-natively t)
-
-(setq org-src-tab-acts-natively t)
 
 ;; NO spell check for embedded snippets
 (defadvice org-mode-flyspell-verify (after org-mode-flyspell-verify-hack activate)
