@@ -93,7 +93,7 @@
 (require 'package)
 (setq package-enable-at-startup nil)
 ;;(when is-linux
-  (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 ;;  )
 ;;(when is-win
 ;;  (add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
@@ -223,24 +223,22 @@
 
 ;; Color HTML style hex-color strings 
 (defvar hexcolor-keywords
-   '(("#[[:xdigit:]]\\{6\\}"
-      (0 (put-text-property (match-beginning 0)
-                            (match-end 0)
-							'face (list :background (match-string-no-properties 0)
-										:foreground (if (>= (apply '+ (x-color-values 
-																	   (match-string-no-properties 0)))
-															(* (apply '+ (x-color-values "white")) .6))
-														"black" ;; light bg, dark text
-													  "white" ;; dark bg, light text
-													  )
-
-
-										))))))
+  '(("#[[:xdigit:]]\\{6\\}"
+	 (0 (put-text-property (match-beginning 0)
+						   (match-end 0)
+						   'face (list :background (match-string-no-properties 0)
+									   :foreground (if (>= (apply '+ (x-color-values 
+																	  (match-string-no-properties 0)))
+														   (* (apply '+ (x-color-values "white")) .6))
+													   "black" ;; light bg, dark text
+													 "white" ;; dark bg, light text
+													 )
+									   ))))))
 
 (defun hexcolor-add-to-font-lock ()
-   (font-lock-add-keywords nil hexcolor-keywords))
+  (font-lock-add-keywords nil hexcolor-keywords))
 
- (add-hook 'json-mode-hook 'hexcolor-add-to-font-lock)
+(add-hook 'json-mode-hook 'hexcolor-add-to-font-lock)
 
 ;;==============================================================================
 
@@ -317,23 +315,23 @@
 (add-hook 'org-babel-after-execute-hook 'shk-fix-inline-images)
 
 ;; Some key remappings
-(add-hook 'org-mode-hook (lambda ()
-						   ;; Make meta up/down behave as in all other modes (as per an earlier global setting)
-						   ;; and re-assign org-metadown/-metaup to control meta down/up keys
-						   (local-set-key [(meta up)] (lambda () (interactive) (scroll-down 4)))
-						   (local-set-key [(meta down)] (lambda () (interactive) (scroll-up 4)))
-						   (local-set-key [(control meta down)] 'org-metadown)
-						   (local-set-key [(control meta up)] 'org-metaup)
-						   ;; ' does not work well with international keyboard layout
-						   (local-set-key (kbd "C-c ;") 'org-edit-special)
-						   )
-		  )
+(add-hook 'org-mode-hook
+		  (lambda ()
+			;; Make meta up/down behave as in all other modes (as per an earlier global setting)
+			;; and re-assign org-metadown/-metaup to control meta down/up keys
+			(local-set-key [(meta up)] (lambda () (interactive) (scroll-down 4)))
+			(local-set-key [(meta down)] (lambda () (interactive) (scroll-up 4)))
+			(local-set-key [(control meta down)] 'org-metadown)
+			(local-set-key [(control meta up)] 'org-metaup)
+			;; ' does not work well with international keyboard layout
+			(local-set-key (kbd "C-c ;") 'org-edit-special)
+			))
 
-(add-hook 'org-src-mode-hook (lambda ()
-						   ;; ' does not work well with international keyboard layout
-						   (local-set-key (kbd "C-c ;") 'org-edit-src-exit)
-						   )
-		  )
+(add-hook 'org-src-mode-hook
+		  (lambda ()
+			;; ' does not work well with international keyboard layout
+			(local-set-key (kbd "C-c ;") 'org-edit-src-exit)
+			))
 
 ;;==============================================================================
 
