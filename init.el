@@ -171,6 +171,12 @@
 (use-package ag)
 (setq ag-highlight-search t)
 
+(add-hook 'inferior-python-mode-hook
+		  (lambda()
+			(nlinum-mode 0)
+			(company-mode 0)
+			))
+
 (require 'flyspell)
 
 (defun docmode()
