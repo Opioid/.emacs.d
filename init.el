@@ -92,12 +92,8 @@
 
 (require 'package)
 (setq package-enable-at-startup nil)
-;;(when is-linux
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
-;;  )
-;;(when is-win
-;;  (add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
-;;  )
+;; (add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 
 (package-initialize)
 
