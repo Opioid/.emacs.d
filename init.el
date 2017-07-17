@@ -112,65 +112,7 @@
 (use-package monokai-theme
   :config (load-theme 'monokai t))
 
-(use-package json-mode)
-(add-to-list 'auto-mode-alist '("\\.material\\'" . json-mode))
-(add-to-list 'auto-mode-alist '("\\.scene\\'" . json-mode))
-(add-to-list 'auto-mode-alist '("\\.take\\'" . json-mode))
-(add-to-list 'auto-mode-alist '("\\.effect\\'" . json-mode))
-
-;; Color HTML style hex-color strings 
-(defvar hexcolor-keywords
-   '(("#[[:xdigit:]]\\{6\\}"
-      (0 (put-text-property (match-beginning 0)
-                            (match-end 0)
-							'face (list :background (match-string-no-properties 0)
-										:foreground (if (>= (apply '+ (x-color-values 
-																	   (match-string-no-properties 0)))
-															(* (apply '+ (x-color-values "white")) .6))
-														"black" ;; light bg, dark text
-													  "white" ;; dark bg, light text
-													  )
-
-
-										))))))
-
-(defun hexcolor-add-to-font-lock ()
-   (font-lock-add-keywords nil hexcolor-keywords))
-
- (add-hook 'json-mode-hook 'hexcolor-add-to-font-lock)
-
-
-;; C++ files
-(add-to-list 'auto-mode-alist '("\\.inl\\'" . c++-mode))
-
-(add-hook 'c-mode-common-hook
-		  (lambda() 
-			(local-set-key [f4] 'ff-find-other-file)))
-
-;; Add underscore to word definition
-(modify-syntax-entry ?_ "w" (standard-syntax-table))
-(add-hook 'c-mode-common-hook
-		  (lambda ()
-			(modify-syntax-entry ?_ "w")))
-(add-hook 'js-mode-hook
-		  (lambda ()
-			(modify-syntax-entry ?_ "w")))
-
-;; Could not find glsl mode
-;; (use-package glsl-mode)
-(add-to-list 'auto-mode-alist '("\\.vert\\'" . c++-mode))
-(add-to-list 'auto-mode-alist '("\\.frag\\'" . c++-mode))
-(add-to-list 'auto-mode-alist '("\\.glsl\\'" . c++-mode))
-(add-to-list 'auto-mode-alist '("\\.brdf\\'" . c++-mode))
-
-;; (use-package cmake-mode)
-;; (add-to-list 'auto-mode-alist '("CMakeLists\\.txt\\'" . cmake-mode))
-;; (add-to-list 'auto-mode-alist '("\\.cmake\\'" . cmake-mode))
-
 ;; Line numbering
-;; (global-linum-mode 1)
-;; (setq linum-format "%4d")
-;; The above is the built-in way (?) but much slower for large files
 (use-package nlinum)
 (global-nlinum-mode 1)
 (setq nlinum-format "%4d")
@@ -205,16 +147,6 @@
 
 (use-package anzu)
 (global-anzu-mode t)
-
-(use-package markdown-mode
-  :ensure t
-  :commands (markdown-mode gfm-mode)
-  :mode (("README\\.md\\'" . gfm-mode)
-         ("\\.md\\'" . markdown-mode)
-         ("\\.markdown\\'" . markdown-mode)
-		 )
-  :init (setq markdown-command "multimarkdown")
-  )
 
 (use-package expand-region)
 (global-set-key (kbd "C-=") 'er/expand-region)
@@ -252,6 +184,96 @@
 (add-hook 'gfm-mode-hook 'docmode)
 (add-hook 'markdown-mode-hook 'docmode)
 (add-hook 'text-mode-hook 'docmode)
+
+(auto-image-file-mode t)
+(add-hook 'image-mode-hook
+		  (lambda()
+			(nlinum-mode 0)
+			(company-mode 0)
+			(anzu-mode 0)
+			))
+
+;; (use-package highlight-thing)
+;; (global-highlight-thing-mode)
+
+(use-package highlight-symbol)
+(global-set-key [(control f3)] 'highlight-symbol)
+(global-set-key [(shift f3)] 'highlight-symbol-prev)
+(global-set-key [f3] 'highlight-symbol-next)
+(global-set-key [(meta f3)] 'highlight-symbol-query-replace)
+
+(use-package web-mode)
+(add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+
+;;==============================================================================
+;; json-mode
+;;==============================================================================
+
+(use-package json-mode)
+(add-to-list 'auto-mode-alist '("\\.material\\'" . json-mode))
+(add-to-list 'auto-mode-alist '("\\.scene\\'" . json-mode))
+(add-to-list 'auto-mode-alist '("\\.take\\'" . json-mode))
+(add-to-list 'auto-mode-alist '("\\.effect\\'" . json-mode))
+
+;; Color HTML style hex-color strings 
+(defvar hexcolor-keywords
+   '(("#[[:xdigit:]]\\{6\\}"
+      (0 (put-text-property (match-beginning 0)
+                            (match-end 0)
+							'face (list :background (match-string-no-properties 0)
+										:foreground (if (>= (apply '+ (x-color-values 
+																	   (match-string-no-properties 0)))
+															(* (apply '+ (x-color-values "white")) .6))
+														"black" ;; light bg, dark text
+													  "white" ;; dark bg, light text
+													  )
+
+
+										))))))
+
+(defun hexcolor-add-to-font-lock ()
+   (font-lock-add-keywords nil hexcolor-keywords))
+
+ (add-hook 'json-mode-hook 'hexcolor-add-to-font-lock)
+
+;;==============================================================================
+
+;; C++ files
+(add-to-list 'auto-mode-alist '("\\.inl\\'" . c++-mode))
+
+(add-hook 'c-mode-common-hook
+		  (lambda() 
+			(local-set-key [f4] 'ff-find-other-file)))
+
+;; Add underscore to word definition
+(modify-syntax-entry ?_ "w" (standard-syntax-table))
+(add-hook 'c-mode-common-hook
+		  (lambda ()
+			(modify-syntax-entry ?_ "w")))
+(add-hook 'js-mode-hook
+		  (lambda ()
+			(modify-syntax-entry ?_ "w")))
+
+;; Could not find glsl mode
+;; (use-package glsl-mode)
+(add-to-list 'auto-mode-alist '("\\.vert\\'" . c++-mode))
+(add-to-list 'auto-mode-alist '("\\.frag\\'" . c++-mode))
+(add-to-list 'auto-mode-alist '("\\.glsl\\'" . c++-mode))
+(add-to-list 'auto-mode-alist '("\\.brdf\\'" . c++-mode))
+
+;; (use-package cmake-mode)
+;; (add-to-list 'auto-mode-alist '("CMakeLists\\.txt\\'" . cmake-mode))
+;; (add-to-list 'auto-mode-alist '("\\.cmake\\'" . cmake-mode))
+
+(use-package markdown-mode
+  :ensure t
+  :commands (markdown-mode gfm-mode)
+  :mode (("README\\.md\\'" . gfm-mode)
+         ("\\.md\\'" . markdown-mode)
+         ("\\.markdown\\'" . markdown-mode)
+		 )
+  :init (setq markdown-command "multimarkdown")
+  )
 
 ;;==============================================================================
 ;; org-mode
@@ -299,23 +321,6 @@
 		  )
 
 ;;==============================================================================
-
-(auto-image-file-mode t)
-(add-hook 'image-mode-hook
-		  (lambda()
-			(nlinum-mode 0)
-			(company-mode 0)
-			(anzu-mode 0)
-			))
-
-;; (use-package highlight-thing)
-;; (global-highlight-thing-mode)
-
-(use-package highlight-symbol)
-(global-set-key [(control f3)] 'highlight-symbol)
-(global-set-key [(shift f3)] 'highlight-symbol-prev)
-(global-set-key [f3] 'highlight-symbol-next)
-(global-set-key [(meta f3)] 'highlight-symbol-query-replace)
 
 ;; For some reason "delete-selection-mode" gets disabled again under Linux if placed near the top of the file
 (delete-selection-mode t)
