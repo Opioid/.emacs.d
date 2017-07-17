@@ -316,13 +316,22 @@
 
 (add-hook 'org-babel-after-execute-hook 'shk-fix-inline-images)
 
-;; Make meta up/down behave as in all other modes (as per an earlier global setting)
-;; and re-assign org-metadown/-metaup to control meta down/up keys
+;; Some key remappings
 (add-hook 'org-mode-hook (lambda ()
+						   ;; Make meta up/down behave as in all other modes (as per an earlier global setting)
+						   ;; and re-assign org-metadown/-metaup to control meta down/up keys
 						   (local-set-key [(meta up)] (lambda () (interactive) (scroll-down 4)))
 						   (local-set-key [(meta down)] (lambda () (interactive) (scroll-up 4)))
 						   (local-set-key [(control meta down)] 'org-metadown)
 						   (local-set-key [(control meta up)] 'org-metaup)
+						   ;; ' does not work well with international keyboard layout
+						   (local-set-key (kbd "C-c ;") 'org-edit-special)
+						   )
+		  )
+
+(add-hook 'org-src-mode-hook (lambda ()
+						   ;; ' does not work well with international keyboard layout
+						   (local-set-key (kbd "C-c ;") 'org-edit-src-exit)
 						   )
 		  )
 
