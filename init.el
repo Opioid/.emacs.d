@@ -149,9 +149,11 @@
 
 ;; (use-package iedit)
 
-(defun occur-dwim()
-  "Call `occur' with a sane default."
-  (interactive)
+;;==============================================================================
+;; Defaults for occur and multi-occur
+;;==============================================================================
+
+(defun pick-default()
   (push (if (region-active-p)
             (buffer-substring-no-properties
              (region-beginning)
@@ -159,10 +161,25 @@
           (let ((sym (thing-at-point 'symbol)))
             (when (stringp sym)
               (regexp-quote sym))))
-        regexp-history)
+        regexp-history))
+
+(defun occur-default()
+  "Call `occur' with a sane default."
+  (interactive)
+  (pick-default)
   (call-interactively 'occur))
 
 (bind-key "M-s o" 'occur-dwim)
+
+(defun multi-occur-default()
+  "Call `multi-occur' with a sane default."
+  (interactive)
+  (pick-default)
+  (call-interactively 'multi-occur))
+
+(bind-key "M-s M-o" 'multi-occur-default)
+
+;;==============================================================================
 
 (use-package ag)
 (setq ag-highlight-search t)
@@ -170,8 +187,7 @@
 (add-hook 'inferior-python-mode-hook
 		  (lambda()
 			(nlinum-mode 0)
-			(company-mode 0)
-			))
+			(company-mode 0)))
 
 (require 'flyspell)
 
@@ -179,8 +195,7 @@
   (nlinum-mode 0)
   (flyspell-mode 1)
   (setq truncate-lines nil)
-  (setq word-wrap 1)
-  ) 
+  (setq word-wrap 1)) 
 
 (add-hook 'org-mode-hook 'docmode)
 (add-hook 'gfm-mode-hook 'docmode)
@@ -192,8 +207,7 @@
 		  (lambda()
 			(nlinum-mode 0)
 			(company-mode 0)
-			(anzu-mode 0)
-			))
+			(anzu-mode 0)))
 
 ;; (use-package highlight-thing)
 ;; (global-highlight-thing-mode)
@@ -228,8 +242,7 @@
 														   (* (apply '+ (x-color-values "white")) .6))
 													   "black" ;; light bg, dark text
 													 "white" ;; dark bg, light text
-													 )
-									   ))))))
+													 )))))))
 
 (defun hexcolor-add-to-font-lock ()
   (font-lock-add-keywords nil hexcolor-keywords))
@@ -270,10 +283,8 @@
   :commands (markdown-mode gfm-mode)
   :mode (("README\\.md\\'" . gfm-mode)
          ("\\.md\\'" . markdown-mode)
-         ("\\.markdown\\'" . markdown-mode)
-		 )
-  :init (setq markdown-command "multimarkdown")
-  )
+         ("\\.markdown\\'" . markdown-mode))
+  :init (setq markdown-command "multimarkdown"))
 
 ;;==============================================================================
 ;; org-mode
