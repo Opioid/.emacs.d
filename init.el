@@ -340,7 +340,7 @@
 ;;==============================================================================
 
 ;;==============================================================================
-;; Disabling nlinum and company for selected buffers
+;; Disabling nlinum and company for selected modes
 ;;==============================================================================
 
 ;; Maybe selectively enabling them would be better?
