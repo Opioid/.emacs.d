@@ -66,8 +66,8 @@
 (defun reload-config()
   "reload your .emacs file without restarting Emacs"
   (interactive)
-  (load-file "~/.emacs.d/init.el")
-  )
+  (load-file "~/.emacs.d/init.el"))
+
 (global-set-key (kbd "<f9>") 'reload-config)
 
 ;; Auto-wrap search
@@ -77,9 +77,7 @@
     (ad-activate 'isearch-search)
     (isearch-repeat (if isearch-forward 'forward))
     (ad-enable-advice 'isearch-search 'after 'isearch-no-fail)
-    (ad-activate 'isearch-search)
-	)
-  )
+    (ad-activate 'isearch-search)))
 
 ;; Create empty buffers with expected major mode
 ;; https://emacs.stackexchange.com/questions/2497/how-to-get-buffers-not-just-files-to-honor-auto-mode-alist/2555#2555
@@ -100,8 +98,7 @@
 ;; Bootstrap 'use-package'
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
-  (package-install 'use-package)
-  )
+  (package-install 'use-package))
 
 (setq use-package-always-ensure t)
 
@@ -169,7 +166,7 @@
   (pick-default)
   (call-interactively 'occur))
 
-(bind-key "M-s o" 'occur-dwim)
+(bind-key "M-s o" 'occur-default)
 
 (defun multi-occur-default()
   "Call `multi-occur' with a sane default."
@@ -339,6 +336,24 @@
 			;; ' does not work well with international keyboard layout
 			(local-set-key (kbd "C-c ;") 'org-edit-src-exit)
 			))
+
+;;==============================================================================
+
+;;==============================================================================
+;; Disabling nlinum and company for selected buffers
+;;==============================================================================
+
+;; Maybe selectively enabling them would be better?
+
+(defun plainmode()
+  (nlinum-mode 0)
+  (company-mode 0))
+
+(add-hook 'help-mode-hook 'plainmode)
+(add-hook 'dired-mode-hook 'plainmode)
+(add-hook 'ibuffer-mode-hook 'plainmode)
+(add-hook 'ag-mode-hook 'plainmode)
+(add-hook 'occur-mode-hook 'plainmode)
 
 ;;==============================================================================
 
