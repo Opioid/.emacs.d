@@ -236,6 +236,9 @@
 (global-set-key [f3] 'highlight-symbol-next)
 (global-set-key [(meta f3)] 'highlight-symbol-query-replace)
 
+(use-package etags-select)
+(global-set-key (kbd "M-.") 'etags-select-find-tag-at-point)
+
 (use-package web-mode)
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
 
