@@ -236,8 +236,25 @@
 (global-set-key [f3] 'highlight-symbol-next)
 (global-set-key [(meta f3)] 'highlight-symbol-query-replace)
 
+;;==============================================================================
+;; etags
+;;==============================================================================
+
 (use-package etags-select)
 (global-set-key (kbd "M-.") 'etags-select-find-tag-at-point)
+
+(use-package etags-table)
+(setq etags-table-search-up-depth 5)
+
+(add-hook 'js-mode-hook
+		  (lambda() 
+			(local-set-key [(meta .)] 'etags-select-find-tag-at-point)))
+
+(use-package ctags-update)
+
+;; (add-hook 'js-mode-hook  'turn-on-ctags-auto-update-mode)
+
+;;==============================================================================
 
 (use-package web-mode)
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
