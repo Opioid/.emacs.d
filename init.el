@@ -253,8 +253,12 @@
 			(local-set-key [(meta .)] 'etags-select-find-tag-at-point)))
 
 (use-package ctags-update)
+;; (ctags-global-auto-update-mode)
+(setq ctags-update-prompt-create-tags nil)
 
-;; (add-hook 'js-mode-hook  'turn-on-ctags-auto-update-mode)
+;;(setq ctags-update-prompt-create-tags nil)
+
+(add-hook 'js-mode-hook 'turn-on-ctags-auto-update-mode)
 
 ;;==============================================================================
 
