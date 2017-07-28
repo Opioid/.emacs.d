@@ -61,14 +61,14 @@
 (global-set-key (kbd "<S-return>") (kbd "C-e C-m"))
 
 (defun config() (interactive) (find-file "~/.emacs.d/init.el"))
-(global-set-key (kbd "<f10>") 'config)
+(global-set-key (kbd "<f9>") 'config)
 
 (defun reload-config()
   "reload your .emacs file without restarting Emacs"
   (interactive)
   (load-file "~/.emacs.d/init.el"))
 
-(global-set-key (kbd "<f9>") 'reload-config)
+(global-set-key (kbd "<f10>") 'reload-config)
 
 ;; Auto-wrap search
 (defadvice isearch-search (after isearch-no-fail activate)
@@ -240,6 +240,8 @@
 ;; etags
 ;;==============================================================================
 
+;; (use-package ggtags)
+
 (use-package etags-select)
 (global-set-key (kbd "M-.") 'etags-select-find-tag-at-point)
 
@@ -395,6 +397,7 @@
 (add-hook 'ibuffer-mode-hook 'plainmode)
 (add-hook 'ag-mode-hook 'plainmode)
 (add-hook 'occur-mode-hook 'plainmode)
+(add-hook 'etags-select-mode-hook 'plainmode)
 
 ;;==============================================================================
 
