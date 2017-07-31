@@ -236,6 +236,9 @@
 (global-set-key [f3] 'highlight-symbol-next)
 (global-set-key [(meta f3)] 'highlight-symbol-query-replace)
 
+(use-package eyebrowse)
+(eyebrowse-mode t)
+
 ;;==============================================================================
 ;; etags
 ;;==============================================================================
