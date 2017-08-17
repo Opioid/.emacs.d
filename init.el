@@ -239,32 +239,6 @@
 (use-package eyebrowse)
 (eyebrowse-mode t)
 
-;;==============================================================================
-;; etags
-;;==============================================================================
-
-;; (use-package ggtags)
-
-(use-package etags-select)
-(global-set-key (kbd "M-.") 'etags-select-find-tag-at-point)
-
-(use-package etags-table)
-(setq etags-table-search-up-depth 5)
-
-(add-hook 'js-mode-hook
-		  (lambda() 
-			(local-set-key [(meta .)] 'etags-select-find-tag-at-point)))
-
-(use-package ctags-update)
-;; (ctags-global-auto-update-mode)
-(setq ctags-update-prompt-create-tags nil)
-
-;;(setq ctags-update-prompt-create-tags nil)
-
-(add-hook 'js-mode-hook 'turn-on-ctags-auto-update-mode)
-
-;;==============================================================================
-
 (use-package web-mode)
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
 
@@ -404,7 +378,6 @@
 (add-hook 'ibuffer-mode-hook 'plainmode)
 (add-hook 'ag-mode-hook 'plainmode)
 (add-hook 'occur-mode-hook 'plainmode)
-(add-hook 'etags-select-mode-hook 'plainmode)
 
 ;;==============================================================================
 
