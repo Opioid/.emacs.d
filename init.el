@@ -363,6 +363,11 @@
 
 ;;==============================================================================
 
+(use-package magit)
+
+(global-set-key (kbd "C-x g") 'magit-status)
+(global-set-key (kbd "C-x M-g") 'magit-dispatch-popup)
+
 ;;==============================================================================
 ;; Disabling nlinum and company for selected modes
 ;;==============================================================================
@@ -378,8 +383,10 @@
 (add-hook 'ibuffer-mode-hook 'plainmode)
 (add-hook 'ag-mode-hook 'plainmode)
 (add-hook 'occur-mode-hook 'plainmode)
+(add-hook 'magit-popup-mode-hook 'plainmode)
 
 ;;==============================================================================
 
-;; For some reason "delete-selection-mode" gets disabled again under Linux if placed near the top of the file
+;; For some reason "delete-selection-mode" gets disabled again under Linux
+;; if placed near the top of the file
 (delete-selection-mode t)
