@@ -288,11 +288,10 @@
 		  (lambda ()
 			(modify-syntax-entry ?_ "w")))
 
-;; Could not find glsl mode
-;; (use-package glsl-mode)
-(add-to-list 'auto-mode-alist '("\\.vert\\'" . c++-mode))
-(add-to-list 'auto-mode-alist '("\\.frag\\'" . c++-mode))
-(add-to-list 'auto-mode-alist '("\\.glsl\\'" . c++-mode))
+(use-package glsl-mode)
+(add-to-list 'auto-mode-alist '("\\.vert\\'" . glsl-mode))
+(add-to-list 'auto-mode-alist '("\\.frag\\'" . glsl-mode))
+(add-to-list 'auto-mode-alist '("\\.glsl\\'" . glsl-mode))
 (add-to-list 'auto-mode-alist '("\\.brdf\\'" . c++-mode))
 
 ;; (use-package cmake-mode)
