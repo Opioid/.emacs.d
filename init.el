@@ -107,8 +107,11 @@
 
 ;; Line numbering
 (use-package nlinum)
-(global-nlinum-mode 1)
+;; (global-nlinum-mode 1)
 (setq nlinum-format "%4d")
+(add-hook 'prog-mode-hook
+		  (lambda()
+			(nlinum-mode 1)))
 
 (use-package flx-ido)
 (ido-mode t)
@@ -210,7 +213,6 @@
 (require 'flyspell)
 
 (defun docmode()
-  (nlinum-mode 0)
   (flyspell-mode 1)
   (setq truncate-lines nil)
   (setq word-wrap 1)) 
@@ -223,7 +225,6 @@
 (auto-image-file-mode t)
 (add-hook 'image-mode-hook
 		  (lambda()
-			(nlinum-mode 0)
 			(company-mode 0)
 			(anzu-mode 0)))
 
@@ -366,25 +367,6 @@
 
 (global-set-key (kbd "C-x g") 'magit-status)
 (global-set-key (kbd "C-x M-g") 'magit-dispatch-popup)
-
-;;==============================================================================
-;; Disabling nlinum and company for selected modes
-;;==============================================================================
-
-;; Maybe selectively enabling them would be better?
-
-(defun plainmode()
-  (nlinum-mode 0)
-  (company-mode 0))
-
-(add-hook 'help-mode-hook 'plainmode)
-(add-hook 'dired-mode-hook 'plainmode)
-(add-hook 'ibuffer-mode-hook 'plainmode)
-(add-hook 'ag-mode-hook 'plainmode)
-(add-hook 'occur-mode-hook 'plainmode)
-(add-hook 'magit-popup-mode-hook 'plainmode)
-
-;;==============================================================================
 
 ;; For some reason "delete-selection-mode" gets disabled again under Linux
 ;; if placed near the top of the file
