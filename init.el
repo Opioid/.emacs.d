@@ -58,6 +58,9 @@
 (global-set-key (kbd "<M-up>") (lambda () (interactive) (scroll-down 4)))
 (global-set-key (kbd "<M-down>") (lambda () (interactive) (scroll-up 4)))
 
+(global-set-key (kbd "C-M-v") (lambda() (interactive) (scroll-other-window  4)))
+(global-set-key (kbd "S-C-M-v") (lambda() (interactive) (scroll-other-window -4)))
+
 (global-set-key (kbd "<S-return>") (kbd "C-e C-m"))
 
 (defun config() (interactive) (find-file "~/.emacs.d/init.el"))
