@@ -298,9 +298,9 @@
 (add-to-list 'auto-mode-alist '("\\.glsl\\'" . glsl-mode))
 (add-to-list 'auto-mode-alist '("\\.brdf\\'" . c++-mode))
 
-;; (use-package cmake-mode)
-;; (add-to-list 'auto-mode-alist '("CMakeLists\\.txt\\'" . cmake-mode))
-;; (add-to-list 'auto-mode-alist '("\\.cmake\\'" . cmake-mode))
+(use-package cmake-mode)
+(add-to-list 'auto-mode-alist '("CMakeLists\\.txt\\'" . cmake-mode))
+(add-to-list 'auto-mode-alist '("\\.cmake\\'" . cmake-mode))
 
 (use-package markdown-mode
   :ensure t
