@@ -302,6 +302,8 @@
 (add-to-list 'auto-mode-alist '("CMakeLists\\.txt\\'" . cmake-mode))
 (add-to-list 'auto-mode-alist '("\\.cmake\\'" . cmake-mode))
 
+(setq cmake-tab-width 4)
+
 (use-package markdown-mode
   :ensure t
   :commands (markdown-mode gfm-mode)
