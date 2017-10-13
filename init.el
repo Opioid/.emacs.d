@@ -141,8 +141,17 @@
 ;; This is your old M-x.
 (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
 
+;;==============================================================================
+;; company-mode
+;;==============================================================================
+
 (use-package company)
 (add-hook 'after-init-hook 'global-company-mode)
+
+(with-eval-after-load 'company
+  (define-key company-active-map (kbd "<escape>") #'company-abort))
+
+;;==============================================================================
 
 (use-package anzu)
 (global-anzu-mode t)
