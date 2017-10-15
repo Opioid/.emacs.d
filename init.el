@@ -151,6 +151,9 @@
 (with-eval-after-load 'company
   (define-key company-active-map (kbd "<escape>") #'company-abort))
 
+;; Security-wise this is stupid
+;; But I didn't find another way to set company-clang-arguments in .dir-locals.el
+(setq enable-local-variables :all)
 ;;==============================================================================
 
 (use-package anzu)
