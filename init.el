@@ -298,6 +298,16 @@
 		  (lambda() 
 			(local-set-key [f4] 'ff-find-other-file)))
 
+(defvar my-cpp-other-file-alist
+  '(("\\.cpp\\'" (".hpp" ".inl"))
+    ("\\.inl\\'" (".hpp" ".cpp"))
+    ("\\.hpp\\'" (".cpp" ".inl"))
+    ("\\.c\\'" (".h"))
+    ("\\.h\\'" (".c"))
+    ))
+
+(setq-default ff-other-file-alist 'my-cpp-other-file-alist)
+
 ;; Add underscore to word definition
 (modify-syntax-entry ?_ "w" (standard-syntax-table))
 (add-hook 'c-mode-common-hook
