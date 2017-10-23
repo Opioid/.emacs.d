@@ -148,8 +148,11 @@
 (use-package company)
 (add-hook 'after-init-hook 'global-company-mode)
 
+
 (with-eval-after-load 'company
-  (define-key company-active-map (kbd "<escape>") #'company-abort))
+  (define-key company-active-map (kbd "<escape>") #'company-abort)
+  '(add-to-list 'company-backends 'company-cmake)
+  )
 
 ;; Security-wise this is stupid
 ;; But I didn't find another way to set company-clang-arguments in .dir-locals.el
