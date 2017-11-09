@@ -138,6 +138,9 @@
 (global-set-key (kbd "M-x") 'counsel-M-x)
 (global-set-key (kbd "C-x C-f") 'counsel-find-file)
 
+(define-key ivy-minibuffer-map (kbd "<M-up>") 'ivy-scroll-down-command)
+(define-key ivy-minibuffer-map (kbd "<M-down>") 'ivy-scroll-up-command)
+
 ;;==============================================================================
 ;; ido
 ;;==============================================================================
@@ -286,7 +289,7 @@
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
 
 ;;==============================================================================
-;; json-mode
+;; json
 ;;==============================================================================
 
 (use-package json-mode)
@@ -298,21 +301,24 @@
 ;; Color HTML style hex-color strings 
 (defvar hexcolor-keywords
   '(("#[[:xdigit:]]\\{6\\}"
-	 (0 (put-text-property (match-beginning 0)
-						   (match-end 0)
-						   'face (list :background (match-string-no-properties 0)
-									   :foreground (if (>= (apply '+ (x-color-values 
-																	  (match-string-no-properties 0)))
-														   (* (apply '+ (x-color-values "white")) .6))
-													   "black" ;; light bg, dark text
-													 "white" ;; dark bg, light text
-													 )))))))
+	 (0 (put-text-property
+		 (match-beginning 0)
+		 (match-end 0)
+		 'face (list :background (match-string-no-properties 0)
+					 :foreground (if (>= (apply '+ (x-color-values 
+													(match-string-no-properties 0)))
+										 (* (apply '+ (x-color-values "white")) .6))
+									 "black" ;; light bg, dark text
+								   "white" ;; dark bg, light text
+								   )))))))
 
 (defun hexcolor-add-to-font-lock ()
   (font-lock-add-keywords nil hexcolor-keywords))
 
 (add-hook 'json-mode-hook 'hexcolor-add-to-font-lock)
 
+;;==============================================================================
+;; yaml
 ;;==============================================================================
 
 (use-package yaml-mode)
