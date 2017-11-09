@@ -116,30 +116,56 @@
 		  (lambda()
 			(nlinum-mode 1)))
 
-(use-package flx-ido)
-(ido-mode t)
-(ido-everywhere t)
-(flx-ido-mode t)
-;; disable ido faces to see flx highlights.
-(setq ido-enable-flex-matching t)
-(setq ido-use-faces nil)
+;;==============================================================================
+;; ivy/swiper
+;;==============================================================================
 
-(use-package ido-vertical-mode)
-(ido-vertical-mode t)
-(setq ido-vertical-define-keys 'C-n-C-p-up-down-left-right)
+(use-package flx)
+(use-package counsel)
 
-(use-package ido-completing-read+)
-(ido-ubiquitous-mode t)
-(setq ido-ubiquitous-auto-update-overrides t)
+(use-package ivy)
+(ivy-mode 1)
+(setq ivy-use-virtual-buffers t)
+;; (setq enable-recursive-minibuffers t)
+(setq ivy-count-format "(%d/%d) ")
+(setq ivy-wrap t)
+(setq ivy-initial-inputs-alist nil)
+(setq ivy-re-builders-alist
+      '((swiper . ivy--regex-plus)
+        (t      . ivy--regex-fuzzy)))
 
-(use-package smex)
-;; Can be omitted. This might cause a (minimal) delay
-;; when Smex is auto-initialized on its first run.
-(smex-initialize) 
-(global-set-key (kbd "M-x") 'smex)
-(global-set-key (kbd "M-X") 'smex-major-mode-commands)
-;; This is your old M-x.
-(global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
+(global-set-key "\C-s" 'swiper)
+(global-set-key (kbd "M-x") 'counsel-M-x)
+(global-set-key (kbd "C-x C-f") 'counsel-find-file)
+
+;;==============================================================================
+;; ido
+;;==============================================================================
+
+;; (use-package flx-ido)
+;; (ido-mode t)
+;; (ido-everywhere t)
+;; (flx-ido-mode t)
+;; ;; disable ido faces to see flx highlights.
+;; (setq ido-enable-flex-matching t)
+;; (setq ido-use-faces nil)
+
+;; (use-package ido-vertical-mode)
+;; (ido-vertical-mode t)
+;; (setq ido-vertical-define-keys 'C-n-C-p-up-down-left-right)
+
+;; (use-package ido-completing-read+)
+;; (ido-ubiquitous-mode t)
+;; (setq ido-ubiquitous-auto-update-overrides t)
+
+;; (use-package smex)
+;; ;; Can be omitted. This might cause a (minimal) delay
+;; ;; when Smex is auto-initialized on its first run.
+;; (smex-initialize) 
+;; (global-set-key (kbd "M-x") 'smex)
+;; (global-set-key (kbd "M-X") 'smex-major-mode-commands)
+;; ;; This is your old M-x.
+;; (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
 
 ;;==============================================================================
 ;; company-mode
@@ -185,8 +211,6 @@
   (after dired-after-updating-hook first () activate)
   "Sort dired listings with directories first before adding marks."
   (mydired-sort))
-
-;;==============================================================================
 
 ;;==============================================================================
 ;; Defaults for occur and multi-occur
