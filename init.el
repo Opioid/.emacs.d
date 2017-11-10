@@ -130,6 +130,7 @@
 (setq ivy-count-format "(%d/%d) ")
 (setq ivy-wrap t)
 (setq ivy-initial-inputs-alist nil)
+(setq ivy-height 12)
 (setq ivy-re-builders-alist
       '((swiper . ivy--regex-plus)
         (t      . ivy--regex-fuzzy)))
@@ -272,15 +273,6 @@
 		  (lambda()
 			(company-mode 0)
 			(anzu-mode 0)))
-
-;; (use-package highlight-thing)
-;; (global-highlight-thing-mode)
-
-(use-package highlight-symbol)
-(global-set-key [(control f3)] 'highlight-symbol)
-(global-set-key [(shift f3)] 'highlight-symbol-prev)
-(global-set-key [f3] 'highlight-symbol-next)
-(global-set-key [(meta f3)] 'highlight-symbol-query-replace)
 
 (use-package eyebrowse)
 (eyebrowse-mode t)
