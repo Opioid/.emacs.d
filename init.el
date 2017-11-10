@@ -74,13 +74,14 @@
 (global-set-key (kbd "<f10>") 'reload-config)
 
 ;; Auto-wrap search
-(defadvice isearch-search (after isearch-no-fail activate)
-  (unless isearch-success
-    (ad-disable-advice 'isearch-search 'after 'isearch-no-fail)
-    (ad-activate 'isearch-search)
-    (isearch-repeat (if isearch-forward 'forward))
-    (ad-enable-advice 'isearch-search 'after 'isearch-no-fail)
-    (ad-activate 'isearch-search)))
+;; Basically no longer necessary because we use swiper now
+;; (defadvice isearch-search (after isearch-no-fail activate)
+;;   (unless isearch-success
+;;     (ad-disable-advice 'isearch-search 'after 'isearch-no-fail)
+;;     (ad-activate 'isearch-search)
+;;     (isearch-repeat (if isearch-forward 'forward))
+;;     (ad-enable-advice 'isearch-search 'after 'isearch-no-fail)
+;;     (ad-activate 'isearch-search)))
 
 ;; Create empty buffers with expected major mode
 ;; https://emacs.stackexchange.com/questions/2497/how-to-get-buffers-not-just-files-to-honor-auto-mode-alist/2555#2555
@@ -115,6 +116,12 @@
 (add-hook 'prog-mode-hook
 		  (lambda()
 			(nlinum-mode 1)))
+
+(use-package anzu)
+(global-anzu-mode t)
+
+(use-package expand-region)
+(global-set-key (kbd "C-=") 'er/expand-region)
 
 ;;==============================================================================
 ;; ivy/swiper
@@ -187,15 +194,6 @@
 ;; Security-wise this is stupid
 ;; But I didn't find another way to set company-clang-arguments in .dir-locals.el
 (setq enable-local-variables :all)
-;;==============================================================================
-
-(use-package anzu)
-(global-anzu-mode t)
-
-(use-package expand-region)
-(global-set-key (kbd "C-=") 'er/expand-region)
-
-;; (use-package iedit)
 
 ;;==============================================================================
 ;; dired-mode
@@ -273,9 +271,6 @@
 		  (lambda()
 			(company-mode 0)
 			(anzu-mode 0)))
-
-(use-package eyebrowse)
-(eyebrowse-mode t)
 
 (use-package web-mode)
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
@@ -355,11 +350,19 @@
 (add-to-list 'auto-mode-alist '("\\.glsl\\'" . glsl-mode))
 (add-to-list 'auto-mode-alist '("\\.brdf\\'" . c++-mode))
 
+;;==============================================================================
+;; cmake-mode
+;;==============================================================================
+
 (use-package cmake-mode)
 (add-to-list 'auto-mode-alist '("CMakeLists\\.txt\\'" . cmake-mode))
 (add-to-list 'auto-mode-alist '("\\.cmake\\'" . cmake-mode))
 
 (setq cmake-tab-width 4)
+
+;;==============================================================================
+;; markdown-mode
+;;==============================================================================
 
 (use-package markdown-mode
   :ensure t
@@ -424,12 +427,22 @@
 			))
 
 ;;==============================================================================
+;; magit
+;;==============================================================================
 
 (use-package magit)
 
 (global-set-key (kbd "C-x g") 'magit-status)
 (global-set-key (kbd "C-x M-g") 'magit-dispatch-popup)
 
+;;==============================================================================
+;; delete-selection-mode
+;;==============================================================================
+
 ;; For some reason "delete-selection-mode" gets disabled again under Linux
 ;; if placed near the top of the file
 (delete-selection-mode t)
+
+;;==============================================================================
+;; Stuff appended by emacs that we don't really want
+;;==============================================================================
