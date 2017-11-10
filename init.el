@@ -95,6 +95,7 @@
 (require 'package)
 (setq package-enable-at-startup nil)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+(add-to-list 'package-archives '("gnu" . "https://elpa.gnu.org/packages/") t)
 ;; (add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 
 (package-initialize)
@@ -111,6 +112,7 @@
 
 ;; Line numbering
 (use-package nlinum)
+(use-package nlinum-hl)
 ;; (global-nlinum-mode 1)
 (setq nlinum-format "%4d")
 (add-hook 'prog-mode-hook
