@@ -139,7 +139,7 @@
 (setq ivy-count-format "(%d/%d) ")
 (setq ivy-wrap t)
 (setq ivy-initial-inputs-alist nil)
-(setq ivy-height 12)
+(setq ivy-height 13)
 (setq ivy-re-builders-alist
       '((swiper . ivy--regex-plus)
         (t      . ivy--regex-fuzzy)))
