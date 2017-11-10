@@ -142,6 +142,7 @@
 (setq ivy-height 13)
 (setq ivy-re-builders-alist
       '((swiper . ivy--regex-plus)
+		(counsel-rg . ivy--regex-plus)
         (t      . ivy--regex-fuzzy)))
 
 (global-set-key "\C-s" 'swiper)
