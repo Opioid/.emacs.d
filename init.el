@@ -182,7 +182,17 @@
 ;; (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
 
 ;;==============================================================================
-;; company-mode
+;; dumb-jump
+;;==============================================================================
+
+(use-package dumb-jump)
+(dumb-jump-mode)
+(setq dumb-jump-selector 'ivy)
+(setq dumb-jump-force-searcher 'rg)
+;; (setq dumb-jump-prefer-searcher 'rg)
+
+;;==============================================================================
+;; company
 ;;==============================================================================
 
 (use-package company)
