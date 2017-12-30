@@ -270,6 +270,13 @@
 (bind-key "M-s M-o" 'multi-occur-default)
 
 ;;==============================================================================
+;; Rainbow delimiters
+;;=============================================================================
+
+(use-package rainbow-delimiters)
+(add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
+
+;;==============================================================================
 
 (use-package ag)
 (setq ag-highlight-search t)
