@@ -358,11 +358,11 @@
 			(local-set-key [f4] 'ff-find-other-file)))
 
 (defvar my-cpp-other-file-alist
-  '(("\\.cpp\\'" (".hpp" ".inl"))
-    ("\\.inl\\'" (".hpp" ".cpp"))
+  '(("\\.cpp\\'" (".hpp" ".h" ".inl"))
+    ("\\.inl\\'" (".hpp" ".h" ".cpp"))
     ("\\.hpp\\'" (".cpp" ".inl"))
     ("\\.c\\'" (".h"))
-    ("\\.h\\'" (".c"))
+    ("\\.h\\'" (".c" ".cpp"))
     ))
 
 (setq-default ff-other-file-alist 'my-cpp-other-file-alist)
