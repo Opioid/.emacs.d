@@ -144,6 +144,8 @@
 		(counsel-rg . ivy--regex-plus)
         (t      . ivy--regex-fuzzy)))
 
+(setq counsel-find-file-at-point t)
+
 (global-set-key "\C-s" 'swiper)
 (global-set-key (kbd "M-x") 'counsel-M-x)
 (global-set-key (kbd "C-x C-f") 'counsel-find-file)
