@@ -201,6 +201,14 @@
 ;; (setq dumb-jump-prefer-searcher 'rg)
 
 ;;==============================================================================
+;; multiple-cursors
+;;==============================================================================
+(use-package multiple-cursors)
+(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
+(global-unset-key (kbd "M-<down-mouse-1>"))
+(global-set-key (kbd "M-<mouse-1>") 'mc/add-cursor-on-click)
+
+;;==============================================================================
 ;; company
 ;;==============================================================================
 (use-package company)
@@ -209,7 +217,8 @@
 
 (with-eval-after-load 'company
   (define-key company-active-map (kbd "<escape>") #'company-abort)
-  '(add-to-list 'company-backends 'company-cmake)
+  (setq company-backends (delete 'company-clang company-backends))
+  (add-to-list 'company-backends 'company-cmake)
   )
 
 ;; Security-wise this is stupid
