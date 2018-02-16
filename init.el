@@ -378,6 +378,16 @@
 ;;==============================================================================
 ;; C++
 ;;==============================================================================
+;; (use-package irony
+;;   :hook ((c++-mode) . irony-mode))
+
+;; Iron-mode Windows performance tweaks
+(when (boundp 'w32-pipe-read-delay)
+  (setq w32-pipe-read-delay 0))
+;; Set the buffer size to 64K on Windows (from the original 4K)
+(when (boundp 'w32-pipe-buffer-size)
+  (setq irony-server-w32-pipe-buffer-size (* 64 1024)))
+
 (add-to-list 'auto-mode-alist '("\\.inl\\'" . c++-mode))
 
 (add-hook 'c-mode-common-hook
