@@ -240,9 +240,7 @@
 ;;==============================================================================
 ;; dired-mode
 ;;==============================================================================
-
 ;; List directories before files
-
 (defun mydired-sort ()
   "Sort dired listings with directories first."
   (save-excursion
@@ -508,7 +506,6 @@
 ;;==============================================================================
 ;; magit
 ;;==============================================================================
-
 (use-package magit
   :bind (("C-x g" . magit-status)
 		 ("C-x M-g" . magit-dispatch-popup)))
@@ -516,7 +513,6 @@
 ;;==============================================================================
 ;; delete-selection-mode
 ;;==============================================================================
-
 ;; For some reason "delete-selection-mode" gets disabled again under Linux
 ;; if placed near the top of the file
 (delete-selection-mode t)
