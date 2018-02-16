@@ -220,7 +220,6 @@
 (use-package company)
 (add-hook 'after-init-hook 'global-company-mode)
 
-
 (with-eval-after-load 'company
   (define-key company-active-map (kbd "<escape>") #'company-abort)
   (setq company-backends (delete 'company-clang company-backends))
@@ -288,12 +287,15 @@
 ;;=============================================================================
 ;; projectile
 ;;=============================================================================
-(use-package projectile)
-(projectile-mode)
-(setq projectile-indexing-method 'alien)
+(use-package projectile
+  :config
+  (projectile-mode)
+  :custom
+  (projectile-indexing-method 'alien))
 
-(use-package counsel-projectile)
-(counsel-projectile-mode)
+(use-package counsel-projectile
+  :config
+  (counsel-projectile-mode))
 
 ;;==============================================================================
 
@@ -326,23 +328,23 @@
 ;;==============================================================================
 ;; web-mode
 ;;==============================================================================
-(use-package web-mode)
-(add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+(use-package web-mode
+  :mode ("\\.html?\\'"))
 
 ;;==============================================================================
 ;; js2-mode
 ;;==============================================================================
-(use-package js2-mode)
-(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+(use-package js2-mode
+  :mode ("\\.js\\'"))
 
 ;;==============================================================================
 ;; json
 ;;==============================================================================
-(use-package json-mode)
-(add-to-list 'auto-mode-alist '("\\.material\\'" . json-mode))
-(add-to-list 'auto-mode-alist '("\\.scene\\'" . json-mode))
-(add-to-list 'auto-mode-alist '("\\.take\\'" . json-mode))
-(add-to-list 'auto-mode-alist '("\\.effect\\'" . json-mode))
+(use-package json-mode
+  :mode ("\\.material\\'"
+		 "\\.scene\\'"
+		 "\\.take\\'"
+		 "\\.effect\\'"))
 
 ;; Color HTML style hex-color strings 
 (defvar hexcolor-keywords
@@ -404,22 +406,22 @@
 ;;==============================================================================
 ;; glsl-mode
 ;;==============================================================================
-(use-package glsl-mode)
-(add-to-list 'auto-mode-alist '("\\.vert\\'" . glsl-mode))
-(add-to-list 'auto-mode-alist '("\\.vs\\'" . glsl-mode))
-(add-to-list 'auto-mode-alist '("\\.frag\\'" . glsl-mode))
-(add-to-list 'auto-mode-alist '("\\.fs\\'" . glsl-mode))
-(add-to-list 'auto-mode-alist '("\\.glsl\\'" . glsl-mode))
-(add-to-list 'auto-mode-alist '("\\.brdf\\'" . c++-mode))
+(use-package glsl-mode
+  :mode ("\\.vert\\'"
+		 "\\.vs\\'"
+		 "\\.frag\\'"
+		 "\\.fs\\'"
+		 "\\.glsl\\'"
+		 "\\.brdf\\'"))
 
 ;;==============================================================================
 ;; cmake-mode
 ;;==============================================================================
-(use-package cmake-mode)
-(add-to-list 'auto-mode-alist '("CMakeLists\\.txt\\'" . cmake-mode))
-(add-to-list 'auto-mode-alist '("\\.cmake\\'" . cmake-mode))
-
-(setq cmake-tab-width 4)
+(use-package cmake-mode
+  :mode ("CMakeLists\\.txt\\'"
+		 "\\.cmake\\'")
+  :custom
+  (cmake-tab-width 4))
 
 ;;==============================================================================
 ;; markdown-mode
@@ -492,8 +494,7 @@
 
 (use-package magit
   :bind (("C-x g" . magit-status)
-		 ("C-x M-g" . magit-dispatch-popup)) 
-  )
+		 ("C-x M-g" . magit-dispatch-popup)))
 
 ;;==============================================================================
 ;; delete-selection-mode
