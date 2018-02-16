@@ -298,7 +298,8 @@
   :config
   (projectile-mode)
   :custom
-  (projectile-indexing-method 'alien))
+  (projectile-indexing-method 'alien)
+  (projectile-mode-line '(:eval (format " [%s]" (projectile-project-name)))))
 
 (use-package counsel-projectile
   :config
