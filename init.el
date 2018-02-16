@@ -92,6 +92,13 @@
 						   (let ((buffer-file-name (buffer-name)))
 							 (set-auto-mode)))))
 
+;; Windows performance tweaks
+(when (boundp 'w32-pipe-read-delay)
+  (setq w32-pipe-read-delay 0))
+;; Set the buffer size to 64K on Windows (from the original 4K)
+;; (when (boundp 'w32-pipe-buffer-size)
+;;  (setq irony-server-w32-pipe-buffer-size (* 64 1024)))
+
 (require 'package)
 (setq package-enable-at-startup nil)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
@@ -222,7 +229,7 @@
 
 (with-eval-after-load 'company
   (define-key company-active-map (kbd "<escape>") #'company-abort)
-  (setq company-backends (delete 'company-clang company-backends))
+;;  (setq company-backends (delete 'company-clang company-backends))
   (add-to-list 'company-backends 'company-cmake)
   )
 
@@ -381,12 +388,11 @@
 ;; (use-package irony
 ;;   :hook ((c++-mode) . irony-mode))
 
-;; Iron-mode Windows performance tweaks
-(when (boundp 'w32-pipe-read-delay)
-  (setq w32-pipe-read-delay 0))
-;; Set the buffer size to 64K on Windows (from the original 4K)
-(when (boundp 'w32-pipe-buffer-size)
-  (setq irony-server-w32-pipe-buffer-size (* 64 1024)))
+;; (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
+
+;; (use-package company-irony)
+;; (eval-after-load 'company
+;;   '(add-to-list 'company-backends 'company-irony))
 
 (add-to-list 'auto-mode-alist '("\\.inl\\'" . c++-mode))
 
