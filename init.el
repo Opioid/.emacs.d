@@ -282,8 +282,8 @@
 ;;=============================================================================
 ;; Rainbow delimiters
 ;;=============================================================================
-(use-package rainbow-delimiters)
-(add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
+(use-package rainbow-delimiters
+  :hook (prog-mode . rainbow-delimiters-mode))
 
 ;;=============================================================================
 ;; projectile
@@ -490,10 +490,10 @@
 ;; magit
 ;;==============================================================================
 
-(use-package magit)
-
-(global-set-key (kbd "C-x g") 'magit-status)
-(global-set-key (kbd "C-x M-g") 'magit-dispatch-popup)
+(use-package magit
+  :bind (("C-x g" . magit-status)
+		 ("C-x M-g" . magit-dispatch-popup)) 
+  )
 
 ;;==============================================================================
 ;; delete-selection-mode
