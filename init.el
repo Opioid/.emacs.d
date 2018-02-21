@@ -315,6 +315,15 @@
 
 (require 'flyspell)
 
+;; for prog modes turn on flyspell-prog-mode (checks spell only in comments)
+(dolist (hook '(lisp-mode-hook
+                emacs-lisp-mode-hook
+				c-mode-common-hook
+                python-mode-hook
+                shell-mode-hook
+                js2-mode-hook))
+  (add-hook hook 'flyspell-prog-mode))
+
 (defun docmode()
   (flyspell-mode 1)
   (setq truncate-lines nil)
