@@ -126,9 +126,6 @@
 		  (lambda()
 			(nlinum-mode 1)))
 
-(use-package anzu)
-(global-anzu-mode t)
-
 (use-package expand-region)
 (global-set-key (kbd "C-=") 'er/expand-region)
 
@@ -337,8 +334,7 @@
 (auto-image-file-mode t)
 (add-hook 'image-mode-hook
 		  (lambda()
-			(company-mode 0)
-			(anzu-mode 0)))
+			(company-mode 0)))
 
 ;;==============================================================================
 ;; web-mode
