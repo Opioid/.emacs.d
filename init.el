@@ -25,7 +25,7 @@
 
 (setq gc-cons-threshold 20000000) ;; Garbage collection to ca. 20 MB
 (desktop-save-mode 1)
-(global-auto-revert-mode t) ;; Update files changed fro manother process
+(global-auto-revert-mode t) ;; Update files changed from another process
 (setq
  backup-by-copying t ; don't clobber symlinks
  backup-directory-alist
@@ -36,7 +36,7 @@
 (tool-bar-mode 0)
 (scroll-bar-mode 0)
 (setq horizontal-scroll-bars nil)
-;; This was neccessary to get rid of the horizontal scroll-bars
+;; This was necessary to get rid of the horizontal scroll-bars
 ;; (modify-all-frames-parameters '((horizontal-scroll-bars . nil)))
 
 (setq-default indent-tabs-mode t)
@@ -489,7 +489,7 @@
 
 (add-hook 'org-babel-after-execute-hook 'shk-fix-inline-images)
 
-;; Some key remappings
+;; Some key re-mappings
 (add-hook 'org-mode-hook
 		  (lambda ()
 			;; Make meta up/down behave as in all other modes (as per an earlier global setting)
