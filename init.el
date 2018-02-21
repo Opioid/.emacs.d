@@ -129,26 +129,30 @@
 (use-package expand-region)
 (global-set-key (kbd "C-=") 'er/expand-region)
 
+(use-package diminish)
+(diminish 'abbrev-mode)
+
 ;;==============================================================================
 ;; ivy/swiper
 ;;==============================================================================
 (use-package flx)
 (use-package counsel)
 
-(use-package ivy)
-(ivy-mode 1)
-(setq ivy-use-virtual-buffers t)
-;; (setq enable-recursive-minibuffers t)
-(setq ivy-count-format "(%d/%d) ")
-(setq ivy-wrap t)
-(setq ivy-initial-inputs-alist nil)
-(setq ivy-height 13)
-(setq ivy-re-builders-alist
-      '((swiper . ivy--regex-plus)
-		(counsel-rg . ivy--regex-plus)
-        (t      . ivy--regex-fuzzy)))
-
-(setq counsel-find-file-at-point t)
+(use-package ivy
+  :diminish (ivy-mode . "")
+  :init (ivy-mode 1)
+  :config
+  (setq ivy-use-virtual-buffers t)
+  ;; (setq enable-recursive-minibuffers t)
+  (setq ivy-count-format "(%d/%d) ")
+  (setq ivy-wrap t)
+  (setq ivy-initial-inputs-alist nil)
+  (setq ivy-height 13)
+  (setq ivy-re-builders-alist
+		'((swiper . ivy--regex-plus)
+		  (counsel-rg . ivy--regex-plus)
+		  (t      . ivy--regex-fuzzy)))
+  (setq counsel-find-file-at-point t))
 
 (global-set-key "\C-s" 'swiper)
 (global-set-key (kbd "M-x") 'counsel-M-x)
@@ -221,14 +225,15 @@
 ;;==============================================================================
 ;; company
 ;;==============================================================================
-(use-package company)
+(use-package company
+  :diminish (company-mode . ""))
+
 (add-hook 'after-init-hook 'global-company-mode)
 
 (with-eval-after-load 'company
   (define-key company-active-map (kbd "<escape>") #'company-abort)
 ;;  (setq company-backends (delete 'company-clang company-backends))
-  (add-to-list 'company-backends 'company-cmake)
-  )
+  (add-to-list 'company-backends 'company-cmake))
 
 ;; Security-wise this is stupid
 ;; But I didn't find another way to set company-clang-arguments in .dir-locals.el
@@ -290,8 +295,7 @@
 ;; projectile
 ;;=============================================================================
 (use-package projectile
-  :config
-  (projectile-mode)
+  :config (projectile-mode)
   :custom
   (projectile-indexing-method 'alien)
   (projectile-mode-line '(:eval (format " [%s]" (projectile-project-name)))))
