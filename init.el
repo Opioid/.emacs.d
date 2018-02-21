@@ -232,7 +232,7 @@
 
 (with-eval-after-load 'company
   (define-key company-active-map (kbd "<escape>") #'company-abort)
-;;  (setq company-backends (delete 'company-clang company-backends))
+  (setq company-backends (delete 'company-clang company-backends))
   (add-to-list 'company-backends 'company-cmake))
 
 ;; Security-wise this is stupid
