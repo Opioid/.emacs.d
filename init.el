@@ -136,7 +136,6 @@
 ;; ivy/swiper
 ;;==============================================================================
 (use-package flx)
-(use-package counsel)
 
 (use-package ivy
   :diminish (ivy-mode . "")
@@ -152,49 +151,34 @@
 		'((swiper . ivy--regex-plus)
 		  (counsel-rg . ivy--regex-plus)
 		  (t      . ivy--regex-fuzzy)))
-  (setq counsel-find-file-at-point t))
+  (setq counsel-find-file-at-point t)
+  :bind (:map ivy-minibuffer-map
+			  ("M-<up>" . ivy-scroll-down-command)
+			  ("M-<down>" . ivy-scroll-up-command))
+  )
 
-(global-set-key "\C-s" 'swiper)
-(global-set-key (kbd "M-x") 'counsel-M-x)
-(global-set-key (kbd "C-x C-f") 'counsel-find-file)
+(use-package swiper
+  :ensure t
+  :bind (("C-s" . swiper)
+         ("C-r" . swiper))
+  )
 
-(define-key ivy-minibuffer-map (kbd "<M-up>") 'ivy-scroll-down-command)
-(define-key ivy-minibuffer-map (kbd "<M-down>") 'ivy-scroll-up-command)
-
-;;==============================================================================
-;; ido
-;;==============================================================================
-
-;; (use-package flx-ido)
-;; (ido-mode t)
-;; (ido-everywhere t)
-;; (flx-ido-mode t)
-;; ;; disable ido faces to see flx highlights.
-;; (setq ido-enable-flex-matching t)
-;; (setq ido-use-faces nil)
-
-;; (use-package ido-vertical-mode)
-;; (ido-vertical-mode t)
-;; (setq ido-vertical-define-keys 'C-n-C-p-up-down-left-right)
-
-;; (use-package ido-completing-read+)
-;; (ido-ubiquitous-mode t)
-;; (setq ido-ubiquitous-auto-update-overrides t)
-
-;; (use-package smex)
-;; ;; Can be omitted. This might cause a (minimal) delay
-;; ;; when Smex is auto-initialized on its first run.
-;; (smex-initialize) 
-;; (global-set-key (kbd "M-x") 'smex)
-;; (global-set-key (kbd "M-X") 'smex-major-mode-commands)
-;; ;; This is your old M-x.
-;; (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
-
-;;==============================================================================
-;; ace-window
-;;==============================================================================
-;; (use-package ace-window)
-;; (global-set-key (kbd "M-p") 'ace-window)
+(use-package counsel
+  :ensure t
+  :bind (("M-x" . counsel-M-x)
+         ("C-x C-f" . counsel-find-file))
+  :config
+  (if (executable-find "rg")
+      ;; use ripgrep instead of grep because it's way faster
+      (setq counsel-grep-base-command
+            "rg -i -M 120 --no-heading --line-number --color never '%s' %s"
+            counsel-rg-base-command
+            "rg -i -M 120 --no-heading --line-number --color never %s ."
+            )
+    (warn "\nWARNING: Could not find the ripgrep executable. It "
+          "is recommended you install ripgrep.")
+    )
+  )
 
 ;;==============================================================================
 ;; iedit
@@ -226,14 +210,15 @@
 ;; company
 ;;==============================================================================
 (use-package company
-  :diminish (company-mode . ""))
-
-(add-hook 'after-init-hook 'global-company-mode)
-
-(with-eval-after-load 'company
+  :diminish (company-mode . "")
+  :config
+  ;; Zero delay when pressing tab
+  (setq company-idle-delay 0)
+  (add-hook 'after-init-hook 'global-company-mode)
   (define-key company-active-map (kbd "<escape>") #'company-abort)
   (setq company-backends (delete 'company-clang company-backends))
-  (add-to-list 'company-backends 'company-cmake))
+  (add-to-list 'company-backends 'company-cmake)
+  )
 
 ;; Security-wise this is stupid
 ;; But I didn't find another way to set company-clang-arguments in .dir-locals.el
@@ -314,16 +299,16 @@
 			(nlinum-mode 0)
 			(company-mode 0)))
 
-(require 'flyspell)
+(use-package flyspell
+  :bind (([f8] . flyspell-correct-at-point))  
+  :config
+;;  (add-hook 'text-mode-hook #'flyspell-mode)
+  (add-hook 'prog-mode-hook #'flyspell-prog-mode)
+  )
 
-;; for prog modes turn on flyspell-prog-mode (checks spell only in comments)
-(dolist (hook '(lisp-mode-hook
-                emacs-lisp-mode-hook
-				c-mode-common-hook
-                python-mode-hook
-                shell-mode-hook
-                js2-mode-hook))
-  (add-hook hook 'flyspell-prog-mode))
+(use-package flyspell-correct-ivy
+  :ensure t
+  :after flyspell)
 
 (defun docmode()
   (flyspell-mode 1)
@@ -516,8 +501,12 @@
 ;; magit
 ;;==============================================================================
 (use-package magit
+  :after (ivy)
   :bind (("C-x g" . magit-status)
-		 ("C-x M-g" . magit-dispatch-popup)))
+		 ("C-x M-g" . magit-dispatch-popup))
+  :config
+  (setq magit-completing-read-function 'ivy-completing-read)
+  )
 
 ;;==============================================================================
 ;; delete-selection-mode
