@@ -186,15 +186,6 @@
 (use-package iedit)
 
 ;;==============================================================================
-;; dumb-jump
-;;==============================================================================
-(use-package dumb-jump)
-(dumb-jump-mode)
-(setq dumb-jump-selector 'ivy)
-(setq dumb-jump-force-searcher 'rg)
-;; (setq dumb-jump-prefer-searcher 'rg)
-
-;;==============================================================================
 ;; multiple-cursors
 ;;==============================================================================
 (use-package multiple-cursors)
@@ -213,7 +204,7 @@
   :diminish (company-mode . "")
   :config
   ;; Zero delay when pressing tab
-  (setq company-idle-delay 0)
+  ;; (setq company-idle-delay 0)
   (add-hook 'after-init-hook 'global-company-mode)
   (define-key company-active-map (kbd "<escape>") #'company-abort)
   (setq company-backends (delete 'company-clang company-backends))
@@ -289,10 +280,9 @@
   :config
   (counsel-projectile-mode))
 
-
-;; Use universal ctags to build the tags database for the project.
-;; When you first want to build a TAGS database run 'touch TAGS'
-;; in the root directory of your project.
+;;=============================================================================
+;; counsel-etags
+;;=============================================================================
 (use-package counsel-etags
   :ensure t
   :bind (
@@ -304,6 +294,8 @@
   (setq counsel-etags-max-file-size 800)
   ;; Ignore build directories for tagging
   (add-to-list 'counsel-etags-ignore-directories '"build*")
+  (add-to-list 'counsel-etags-ignore-directories '"deps")
+  (add-to-list 'counsel-etags-ignore-directories '"extern")
   (add-to-list 'counsel-etags-ignore-directories '".vscode")
   (add-to-list 'counsel-etags-ignore-filenames '".clang-format")
   ;; Don't ask before rereading the TAGS files if they have changed
