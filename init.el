@@ -52,6 +52,8 @@
 (show-paren-mode 1)
 (setq-default cursor-type 'bar)
 (set-default 'truncate-lines t)
+;; avoids "Keep current list of tags table also"
+(setq tags-add-tables nil)
 (defalias 'yes-or-no-p 'y-or-n-p) ;; confirm with y instead of yes<ret>
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 
@@ -72,16 +74,6 @@
   (load-file "~/.emacs.d/init.el"))
 
 (global-set-key (kbd "<f10>") 'reload-config)
-
-;; Auto-wrap search
-;; Basically no longer necessary because we use swiper now
-;; (defadvice isearch-search (after isearch-no-fail activate)
-;;   (unless isearch-success
-;;     (ad-disable-advice 'isearch-search 'after 'isearch-no-fail)
-;;     (ad-activate 'isearch-search)
-;;     (isearch-repeat (if isearch-forward 'forward))
-;;     (ad-enable-advice 'isearch-search 'after 'isearch-no-fail)
-;;     (ad-activate 'isearch-search)))
 
 ;; Create empty buffers with expected major mode
 ;; https://emacs.stackexchange.com/questions/2497/how-to-get-buffers-not-just-files-to-honor-auto-mode-alist/2555#2555
