@@ -288,6 +288,7 @@
   (add-to-list 'counsel-etags-ignore-directories '"build*")
   (add-to-list 'counsel-etags-ignore-directories '"deps")
   (add-to-list 'counsel-etags-ignore-directories '"extern")
+  (add-to-list 'counsel-etags-ignore-directories '"tools")
   (add-to-list 'counsel-etags-ignore-directories '".vscode")
   (add-to-list 'counsel-etags-ignore-filenames '".clang-format")
   ;; Don't ask before rereading the TAGS files if they have changed
@@ -303,18 +304,14 @@
                         (lambda ()
                           (counsel-etags-virtual-update-tags))))
    )
+  (when is-win
+	(setq counsel-etags-find-program "C:/bin/find.exe")
+	)
   )
-  
+
 ;;==============================================================================
-
-(use-package ag)
-(setq ag-highlight-search t)
-
-(add-hook 'inferior-python-mode-hook
-		  (lambda()
-			(nlinum-mode 0)
-			(company-mode 0)))
-
+;; flyspell
+;;==============================================================================
 (use-package flyspell
   :bind (([f8] . flyspell-correct-at-point))  
   :config
@@ -325,6 +322,13 @@
 (use-package flyspell-correct-ivy
   :ensure t
   :after flyspell)
+
+;;==============================================================================
+(add-hook 'inferior-python-mode-hook
+		  (lambda()
+			(nlinum-mode 0)
+			(company-mode 0)))
+
 
 (defun docmode()
   (flyspell-mode 1)
