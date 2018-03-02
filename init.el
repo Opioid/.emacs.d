@@ -286,6 +286,7 @@
   (setq counsel-etags-max-file-size 800)
   ;; Ignore build directories for tagging
   (add-to-list 'counsel-etags-ignore-directories '"build*")
+  (add-to-list 'counsel-etags-ignore-directories '"data")
   (add-to-list 'counsel-etags-ignore-directories '"deps")
   (add-to-list 'counsel-etags-ignore-directories '"extern")
   (add-to-list 'counsel-etags-ignore-directories '"tools")
@@ -304,9 +305,12 @@
                         (lambda ()
                           (counsel-etags-virtual-update-tags))))
    )
-  (when is-win
-	(setq counsel-etags-find-program "C:/bin/find.exe")
-	)
+;;  (when is-win
+;;	(setq counsel-etags-find-program "C:\\\\bin\\\\find.exe")
+  ;;	)
+ (when is-win
+	(setq counsel-etags-tags-program "C:\\\\bin\\\\ctags.exe -Re -L")
+	)  
   )
 
 ;;==============================================================================
