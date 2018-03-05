@@ -173,6 +173,41 @@
   )
 
 ;;==============================================================================
+;; mode-line adjustments
+;;==============================================================================
+(defun simple-mode-line-render (left right)
+  "Return a string of `window-width' length containing LEFT, and RIGHT aligned respectively."
+  (let* ((available-width (- (window-width) (length left) 2)))
+    (format (format "%%s %%%ds" available-width) left right)))
+
+(setq-default mode-line-format
+ '((:eval
+    (simple-mode-line-render
+     ;; left
+     (format-mode-line
+      '("%e"
+        mode-line-front-space
+	 	mode-line-mule-info
+	 	mode-line-client
+	 	mode-line-modified
+	 	mode-line-remote
+	 	mode-line-frame-identification
+	 	mode-line-buffer-identification
+	 	" "
+	 	(vc-mode vc-mode)
+	 	" "
+	 	mode-line-modes
+	 	mode-line-misc-info
+		mode-line-end-spaces
+        ))
+
+     ;; right
+     (format-mode-line "%l:%c %p%%")
+	 )
+	))
+ )
+
+;;==============================================================================
 ;; iedit
 ;;==============================================================================
 (use-package iedit)
@@ -305,12 +340,6 @@
                         (lambda ()
                           (counsel-etags-virtual-update-tags))))
    )
-;;  (when is-win
-;;	(setq counsel-etags-find-program "C:\\\\bin\\\\find.exe")
-  ;;	)
- (when is-win
-	(setq counsel-etags-tags-program "C:\\\\bin\\\\ctags.exe -Re -L")
-	)  
   )
 
 ;;==============================================================================
