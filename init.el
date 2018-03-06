@@ -123,6 +123,7 @@
 
 (use-package diminish)
 (diminish 'abbrev-mode)
+(diminish 'server-buffer-clients)
 
 ;;==============================================================================
 ;; ivy/swiper
@@ -429,9 +430,11 @@
 ;; yaml
 ;;==============================================================================
 (use-package yaml-mode
-  :hook (yaml-mode . (lambda ()
-					   (nlinum-mode 1)
-					   (flyspell-mode 0))))
+  :hook
+  (yaml-mode . (lambda ()
+				 (nlinum-mode 1)
+				 (flyspell-mode 0)))
+  )
 
 ;;==============================================================================
 ;; C++
