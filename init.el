@@ -153,6 +153,12 @@
   :ensure t
   :bind (("C-s" . swiper)
          ("C-r" . swiper))
+  :config
+  (defun swiper-default()
+	"Call 'swiper' with a sane default."
+	(interactive)
+	(swiper (thing-at-point 'symbol)))
+  (bind-key "<f3>" 'swiper-default)
   )
 
 (use-package counsel
