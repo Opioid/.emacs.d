@@ -130,7 +130,7 @@
 (use-package flx)
 
 (use-package ivy
-  :diminish (ivy-mode . "")
+  :diminish ivy-mode
   :init (ivy-mode 1)
   :config
   (setq ivy-use-virtual-buffers t)
@@ -234,7 +234,7 @@
 ;; company
 ;;==============================================================================
 (use-package company
-  :diminish (company-mode . "")
+  :diminish company-mode
   :config
   ;; Zero delay when pressing tab
   ;; (setq company-idle-delay 0)
@@ -352,6 +352,7 @@
 ;; flyspell
 ;;==============================================================================
 (use-package flyspell
+  :diminish
   :bind (([f8] . flyspell-correct-at-point))  
   :config
 ;;  (add-hook 'text-mode-hook #'flyspell-mode)
