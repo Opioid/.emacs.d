@@ -340,6 +340,7 @@
   (setq large-file-warning-threshold nil)
   ;; How many seconds to wait before rerunning tags for auto-update
   (setq counsel-etags-update-interval 180)
+  (setq counsel-etags-quiet-when-updating-tags t)
   ;; Set up auto-update
   (add-hook
    'prog-mode-hook
