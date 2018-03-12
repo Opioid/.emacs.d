@@ -346,7 +346,9 @@
   (add-to-list 'counsel-etags-ignore-directories '"build*")
   (add-to-list 'counsel-etags-ignore-directories '"data")
   (add-to-list 'counsel-etags-ignore-directories '"deps")
+  (add-to-list 'counsel-etags-ignore-directories '"doc")
   (add-to-list 'counsel-etags-ignore-directories '"extern")
+  (add-to-list 'counsel-etags-ignore-directories '"test")
   (add-to-list 'counsel-etags-ignore-directories '"tools")
   (add-to-list 'counsel-etags-ignore-directories '".vscode")
   (add-to-list 'counsel-etags-ignore-filenames '".clang-format")
@@ -356,6 +358,7 @@
   (setq large-file-warning-threshold nil)
   ;; How many seconds to wait before rerunning tags for auto-update
   (setq counsel-etags-update-interval 180)
+  (setq counsel-etags-quiet-when-updating-tags t)
   ;; Set up auto-update
   (add-hook
    'prog-mode-hook
