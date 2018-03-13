@@ -174,7 +174,10 @@
 (use-package counsel
   :ensure t
   :bind (("M-x" . counsel-M-x)
-         ("C-x C-f" . counsel-find-file))
+         ("C-x C-f" . counsel-find-file)
+		 ("M-y" . counsel-yank-pop)
+		 :map ivy-minibuffer-map
+		 ("M-y" . ivy-next-line))
   :config
   (if (executable-find "rg")
       ;; use ripgrep instead of grep because it's way faster
@@ -384,6 +387,12 @@
   :after flyspell)
 
 ;;==============================================================================
+;; rainbow-mode
+;;==============================================================================
+(use-package rainbow-mode
+  :diminish)
+
+;;==============================================================================
 (add-hook 'inferior-python-mode-hook
 		  (lambda()
 			(nlinum-mode 0)
@@ -424,26 +433,8 @@
   :mode ("\\.material\\'"
 		 "\\.scene\\'"
 		 "\\.take\\'"
-		 "\\.effect\\'"))
-
-;; Color HTML style hex-color strings 
-(defvar hexcolor-keywords
-  '(("#[[:xdigit:]]\\{6\\}"
-	 (0 (put-text-property
-		 (match-beginning 0)
-		 (match-end 0)
-		 'face (list :background (match-string-no-properties 0)
-					 :foreground (if (>= (apply '+ (x-color-values 
-													(match-string-no-properties 0)))
-										 (* (apply '+ (x-color-values "white")) .6))
-									 "black" ;; light bg, dark text
-								   "white" ;; dark bg, light text
-								   )))))))
-
-(defun hexcolor-add-to-font-lock ()
-  (font-lock-add-keywords nil hexcolor-keywords))
-
-(add-hook 'json-mode-hook 'hexcolor-add-to-font-lock)
+		 "\\.effect\\'")
+  :hook (json-mode . rainbow-mode))
 
 ;;==============================================================================
 ;; yaml
