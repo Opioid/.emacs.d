@@ -229,7 +229,12 @@
 (use-package moody
   :config
   (setq x-underline-at-descent-line t)
-  (setq moody-mode-line-height 22)
+  (when is-linux
+	(setq moody-mode-line-height 24)
+	)
+  (when is-win
+	(setq moody-mode-line-height 22)
+	)
   (moody-replace-mode-line-buffer-identification)
   (moody-replace-vc-mode))
 
