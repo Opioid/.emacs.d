@@ -226,15 +226,14 @@
 	))
  )
 
+;; Has to come after our customized mode-line render
 (use-package moody
   :config
   (setq x-underline-at-descent-line t)
   (when is-linux
-	(setq moody-mode-line-height 24)
-	)
+	(setq moody-mode-line-height 24))
   (when is-win
-	(setq moody-mode-line-height 22)
-	)
+	(setq moody-mode-line-height 22))
   (moody-replace-mode-line-buffer-identification)
   (moody-replace-vc-mode))
 
@@ -343,8 +342,7 @@
 ;;=============================================================================
 (use-package counsel-etags
   :ensure t
-  :bind (
-         ("M-." . counsel-etags-find-tag-at-point)
+  :bind (("M-." . counsel-etags-find-tag-at-point)
          ("M-t" . counsel-etags-grep-symbol-at-point)
          ("M-s" . counsel-etags-find-tag))
   :config
