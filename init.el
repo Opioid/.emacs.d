@@ -380,6 +380,8 @@
   :config
 ;;  (add-hook 'text-mode-hook #'flyspell-mode)
   (add-hook 'prog-mode-hook #'flyspell-prog-mode)
+  ;; I'm never using thins function, and it interferes with iedit default
+  (unbind-key "C-;" flyspell-mode-map)  
   )
 
 (use-package flyspell-correct-ivy
