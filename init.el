@@ -335,7 +335,8 @@
 
 (use-package counsel-projectile
   :config
-  (counsel-projectile-mode))
+  (counsel-projectile-mode)
+  (define-key counsel-projectile-command-map (kbd "s") 'counsel-projectile-rg))
 
 ;;=============================================================================
 ;; counsel-etags
