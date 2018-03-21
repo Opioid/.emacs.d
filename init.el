@@ -47,6 +47,8 @@
 (setq scroll-step 1)
 (setq scroll-conservatively 10000)
 (setq auto-window-vscroll nil)
+;; automatically scroll the compilation window
+(setq compilation-scroll-output t)
 ;; (setq sentence-end-double-space nil)
 (electric-pair-mode 1)
 (show-paren-mode 1)
