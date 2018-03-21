@@ -329,8 +329,32 @@
 ;;=============================================================================
 ;; projectile
 ;;=============================================================================
+;; Directly run the project run command, without further prompt.
+;; (defun my-projectile-run-project (&optional prompt)
+;;   (interactive "P")
+;;   (let ((compilation-read-command
+;;          (or (not (projectile-run-command (projectile-compilation-dir)))
+;;              prompt)))
+;;     (projectile-run-project prompt)))
+
+(defun my-projectile-run-project (&optional prompt)
+  (interactive "P")
+  (let (compilation-read-command prompt)
+    (projectile-run-project prompt)))
+
+;; Directly compile the project, without further prompt.
+;; Automatically save all project buffers before.
+(defun my-projectile-compile-project (&optional prompt)
+  (interactive "P")
+  (let (compilation-read-command prompt)
+	(projectile-save-project-buffers)
+    (projectile-compile-project prompt)))
+
 (use-package projectile
   :config (projectile-mode)
+  :bind (([f5] . my-projectile-run-project)
+		 ([f7] . my-projectile-compile-project))
+  
   :custom
   (projectile-indexing-method 'alien)
   (projectile-mode-line '(:eval (format " [%s]" (projectile-project-name)))))
