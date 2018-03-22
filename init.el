@@ -158,8 +158,7 @@
   (setq counsel-find-file-at-point t)
   :bind (:map ivy-minibuffer-map
 			  ("M-<up>" . ivy-scroll-down-command)
-			  ("M-<down>" . ivy-scroll-up-command))
-  )
+			  ("M-<down>" . ivy-scroll-up-command)))
 
 (use-package swiper
   :ensure t
@@ -170,8 +169,20 @@
 	"Call 'swiper' with a sane default."
 	(interactive)
 	(swiper (thing-at-point 'symbol)))
-  (bind-key "<f3>" 'swiper-default)
+  (bind-key [f3] 'swiper-default)
   )
+
+(defun my-minibuffer-keyboard-quit ()
+  "Abort recursive edit."
+  "In Delete Selection mode, if the mark is active, just deactivate it;"
+  "then it takes a second \\[keyboard-quit] to abort the minibuffer."
+  (interactive)
+  (if (and delete-selection-mode transient-mark-mode mark-active)
+      (setq deactivate-mark t)
+    (when (get-buffer "*Completions*") (delete-windows-on "*Completions*"))
+    (abort-recursive-edit)))
+
+(define-key ivy-minibuffer-map (kbd "<f3>") 'my-minibuffer-keyboard-quit)
 
 (use-package counsel
   :ensure t
@@ -294,7 +305,7 @@
 ;;==============================================================================
 ;; Defaults for occur and multi-occur
 ;;==============================================================================
-(defun pick-default()
+(defun pick-default ()
   (push (if (region-active-p)
             (buffer-substring-no-properties
              (region-beginning)
@@ -304,7 +315,7 @@
               (regexp-quote sym))))
         regexp-history))
 
-(defun occur-default()
+(defun occur-default ()
   "Call `occur' with a sane default."
   (interactive)
   (pick-default)
@@ -312,7 +323,7 @@
 
 (bind-key "M-s o" 'occur-default)
 
-(defun multi-occur-default()
+(defun multi-occur-default ()
   "Call `multi-occur' with a sane default."
   (interactive)
   (pick-default)
@@ -398,8 +409,7 @@
    (lambda () (add-hook 'after-save-hook
                         (lambda ()
                           (counsel-etags-virtual-update-tags))))
-   )
-  )
+   ))
 
 ;;==============================================================================
 ;; flyspell
@@ -411,8 +421,7 @@
 ;;  (add-hook 'text-mode-hook #'flyspell-mode)
 ;;  (add-hook 'prog-mode-hook #'flyspell-prog-mode)
   ;; I'm never using thins function, and it interferes with iedit default
-  (unbind-key "C-;" flyspell-mode-map)  
-  )
+  (unbind-key "C-;" flyspell-mode-map))
 
 (use-package flyspell-correct-ivy
   :ensure t
@@ -475,8 +484,7 @@
   :hook
   (yaml-mode . (lambda ()
 				 (nlinum-mode 1)
-				 (flyspell-mode 0)))
-  )
+				 (flyspell-mode 0))))
 
 ;;==============================================================================
 ;; C++
@@ -501,8 +509,7 @@
     ("\\.inl\\'" (".hpp" ".h" ".cpp"))
     ("\\.hpp\\'" (".cpp" ".inl"))
     ("\\.c\\'" (".h"))
-    ("\\.h\\'" (".c" ".cpp"))
-    ))
+    ("\\.h\\'" (".c" ".cpp"))))
 
 (setq-default ff-other-file-alist 'my-cpp-other-file-alist)
 
@@ -527,6 +534,21 @@
     (funcall orig-fun beg end arg)))
 
 (advice-add 'comment-region :around 'my-qtcreator-likeish-comments)
+
+
+;; (defun my-qtcreator-likeish-comments (orig-fun beg end &optional arg)
+;;   (if (and (eq major-mode 'c++-mode)
+;;            (save-excursion
+;;              (goto-char end)
+;;              (not (looking-at-p "[ \t]*$"))))
+;;       (let ((comment-start "/* ")
+;;             (comment-end " */")
+;;             (comment-style 'multi-line)
+;;             (comment-continue ""))
+;;         (funcall orig-fun beg end arg))
+;;     (funcall orig-fun beg end arg)))
+
+;; (advice-add 'comment-region :around 'my-qtcreator-likeish-comments)
 
 ;;==============================================================================
 ;; glsl-mode
@@ -604,14 +626,12 @@
 			(local-set-key [(control meta down)] 'org-metadown)
 			(local-set-key [(control meta up)] 'org-metaup)
 			;; ' does not work well with international keyboard layout
-			(local-set-key (kbd "C-c ;") 'org-edit-special)
-			))
+			(local-set-key (kbd "C-c ;") 'org-edit-special)))
 
 (add-hook 'org-src-mode-hook
 		  (lambda ()
 			;; ' does not work well with international keyboard layout
-			(local-set-key (kbd "C-c ;") 'org-edit-src-exit)
-			))
+			(local-set-key (kbd "C-c ;") 'org-edit-src-exit)))
 
 ;;==============================================================================
 ;; magit
@@ -621,8 +641,7 @@
   :bind (("C-x g" . magit-status)
 		 ("C-x M-g" . magit-dispatch-popup))
   :config
-  (setq magit-completing-read-function 'ivy-completing-read)
-  )
+  (setq magit-completing-read-function 'ivy-completing-read))
 
 ;;==============================================================================
 ;; delete-selection-mode
