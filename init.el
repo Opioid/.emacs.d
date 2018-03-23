@@ -50,7 +50,7 @@
 ;; automatically scroll the compilation window
 (setq compilation-scroll-output t)
 ;; Don't save *anything* before compiling (use projectile-save-buffers instead further down)
-(setq compilation-save-buffers-predicate '(lambda () nil))
+(setq compilation-save-buffers-predicate 'ignore)
 ;; (setq sentence-end-double-space nil)
 (electric-pair-mode 1)
 (show-paren-mode 1)
