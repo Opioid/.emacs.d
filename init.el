@@ -123,13 +123,10 @@
   )
 
 ;; Line numbering
-(use-package nlinum)
-(use-package nlinum-hl)
-;; (global-nlinum-mode 1)
-(setq nlinum-format "%4d")
+(setq display-line-numbers-width-start t)
 (add-hook 'prog-mode-hook
 		  (lambda()
-			(nlinum-mode 1)))
+			(display-line-numbers-mode 1)))
 
 (use-package expand-region)
 (global-set-key (kbd "C-=") 'er/expand-region)
@@ -438,7 +435,7 @@
 ;;==============================================================================
 (add-hook 'inferior-python-mode-hook
 		  (lambda()
-			(nlinum-mode 0)
+			(display-line-numbers-mode 0)
 			(company-mode 0)))
 
 
@@ -485,7 +482,7 @@
 (use-package yaml-mode
   :hook
   (yaml-mode . (lambda ()
-				 (nlinum-mode 1)
+				 (display-line-numbers-mode 1)
 				 (flyspell-mode 0))))
 
 ;;==============================================================================
