@@ -182,6 +182,7 @@
     (abort-recursive-edit)))
 
 (define-key ivy-minibuffer-map (kbd "<f3>") 'my-minibuffer-keyboard-quit)
+(define-key ivy-minibuffer-map (kbd "<escape>") 'my-minibuffer-keyboard-quit)
 
 (use-package counsel
   :ensure t
