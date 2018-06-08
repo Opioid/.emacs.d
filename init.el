@@ -38,9 +38,9 @@
 (setq horizontal-scroll-bars nil)
 
 (setq-default indent-tabs-mode nil)
-(setq-default tab-width 2)
-(setq sgml-basic-offset 2) ;; In my case basically tab-width for HTML
-(setq-default c-basic-offset 2)
+(setq-default tab-width 4)
+(setq sgml-basic-offset 4) ;; In my case basically tab-width for HTML
+(setq-default c-basic-offset 4)
 (setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
 (setq scroll-step 1)
 (setq scroll-conservatively 10000)
@@ -81,10 +81,10 @@
 ;; https://emacs.stackexchange.com/questions/2497/how-to-get-buffers-not-just-files-to-honor-auto-mode-alist/2555#2555
 ;; http://thread.gmane.org/gmane.emacs.devel/115520/focus=115794
 (setq-default major-mode
-			        (lambda () (if buffer-file-name
-							               (fundamental-mode)
-						               (let ((buffer-file-name (buffer-name)))
-							               (set-auto-mode)))))
+			  (lambda () (if buffer-file-name
+							 (fundamental-mode)
+						   (let ((buffer-file-name (buffer-name)))
+							 (set-auto-mode)))))
 
 ;; Windows performance tweaks
 (when (boundp 'w32-pipe-read-delay)
@@ -117,14 +117,14 @@
     (set-face-attribute 'mode-line          nil :box        nil)
     (set-face-attribute 'mode-line-inactive nil :box        nil)
     (set-face-attribute 'mode-line-inactive nil :background "#32312a") 
-	  )
+	)
   )
 
 ;; Line numbering
 (setq display-line-numbers-width-start t)
 (add-hook 'prog-mode-hook
-		      (lambda()
-			      (display-line-numbers-mode 1)))
+		  (lambda()
+			(display-line-numbers-mode 1)))
 
 (use-package expand-region)
 (global-set-key (kbd "C-=") 'er/expand-region)
@@ -149,13 +149,13 @@
   (setq ivy-initial-inputs-alist nil)
   (setq ivy-height 13)
   (setq ivy-re-builders-alist
-		    '((swiper . ivy--regex-plus)
-		      (counsel-rg . ivy--regex-plus)
-		      (t      . ivy--regex-fuzzy)))
+		'((swiper . ivy--regex-plus)
+		  (counsel-rg . ivy--regex-plus)
+		  (t      . ivy--regex-fuzzy)))
   (setq counsel-find-file-at-point t)
   :bind (:map ivy-minibuffer-map
-			        ("M-<up>" . ivy-scroll-down-command)
-			        ("M-<down>" . ivy-scroll-up-command)))
+			  ("M-<up>" . ivy-scroll-down-command)
+			  ("M-<down>" . ivy-scroll-up-command)))
 
 (use-package swiper
   :ensure t
@@ -163,9 +163,9 @@
          ("C-r" . swiper))
   :config
   (defun swiper-default()
-	  "Call 'swiper' with a sane default."
-	  (interactive)
-	  (swiper (thing-at-point 'symbol)))
+	"Call 'swiper' with a sane default."
+	(interactive)
+	(swiper (thing-at-point 'symbol)))
   (bind-key [f3] 'swiper-default)
   )
 
@@ -186,9 +186,9 @@
   :ensure t
   :bind (("M-x" . counsel-M-x)
          ("C-x C-f" . counsel-find-file)
-		     ("M-y" . counsel-yank-pop)
-		     :map ivy-minibuffer-map
-		     ("M-y" . ivy-next-line))
+		 ("M-y" . counsel-yank-pop)
+		 :map ivy-minibuffer-map
+		 ("M-y" . ivy-next-line))
   :config
   (if (executable-find "rg")
       ;; use ripgrep instead of grep because it's way faster
@@ -217,24 +217,24 @@
                   (format-mode-line
                    '("%e"
                      mode-line-front-space
-	 	                 mode-line-mule-info
-	 	                 mode-line-client
-	 	                 mode-line-modified
-	 	                 mode-line-remote
-	 	                 mode-line-frame-identification
-	 	                 mode-line-buffer-identification
-	 	                 " "
-	 	                 mode-line-modes
-	 	                 " "
-		                 (vc-mode vc-mode)
-	 	                 mode-line-misc-info
-		                 mode-line-end-spaces
+	 	             mode-line-mule-info
+	 	             mode-line-client
+	 	             mode-line-modified
+	 	             mode-line-remote
+	 	             mode-line-frame-identification
+	 	             mode-line-buffer-identification
+	 	             " "
+	 	             mode-line-modes
+	 	             " "
+		             (vc-mode vc-mode)
+	 	             mode-line-misc-info
+		             mode-line-end-spaces
                      ))
 
                   ;; right
                   (format-mode-line "%l:%c %p%%")
-	                )
-	               ))
+	              )
+	             ))
               )
 
 ;; Has to come after our customized mode-line render
@@ -242,9 +242,9 @@
   :config
   (setq x-underline-at-descent-line t)
   (when is-linux
-	  (setq moody-mode-line-height 24))
+	(setq moody-mode-line-height 24))
   (when is-win
-	  (setq moody-mode-line-height 22))
+	(setq moody-mode-line-height 22))
   (moody-replace-mode-line-buffer-identification)
   (moody-replace-vc-mode))
 
@@ -356,13 +356,13 @@
 (defun my-projectile-compile-project (&optional prompt)
   (interactive "P")
   (let (compilation-read-command prompt)
-	  (projectile-save-project-buffers)
+	(projectile-save-project-buffers)
     (projectile-compile-project prompt)))
 
 (use-package projectile
   :config (projectile-mode)
   :bind (([f5] . my-projectile-run-project)
-		     ([f7] . my-projectile-compile-project))
+		 ([f7] . my-projectile-compile-project))
   
   :custom
   (projectile-indexing-method 'alien)
@@ -433,9 +433,9 @@
 
 ;;==============================================================================
 (add-hook 'inferior-python-mode-hook
-		      (lambda()
-			      (display-line-numbers-mode 0)
-			      (company-mode 0)))
+		  (lambda()
+			(display-line-numbers-mode 0)
+			(company-mode 0)))
 
 
 (defun docmode()
@@ -450,8 +450,8 @@
 
 (auto-image-file-mode t)
 (add-hook 'image-mode-hook
-		      (lambda()
-			      (company-mode 0)))
+		  (lambda()
+			(company-mode 0)))
 
 ;;==============================================================================
 ;; web-mode
@@ -470,9 +470,9 @@
 ;;==============================================================================
 (use-package json-mode
   :mode ("\\.material\\'"
-		     "\\.scene\\'"
-		     "\\.take\\'"
-		     "\\.effect\\'")
+		 "\\.scene\\'"
+		 "\\.take\\'"
+		 "\\.effect\\'")
   :hook (json-mode . rainbow-mode))
 
 ;;==============================================================================
@@ -482,8 +482,8 @@
   :mode ("\\.clang-format")
   :hook
   (yaml-mode . (lambda ()
-				         (display-line-numbers-mode 1)
-				         (flyspell-mode 0))))
+				 (display-line-numbers-mode 1)
+				 (flyspell-mode 0))))
 
 ;;==============================================================================
 ;; C++
@@ -500,8 +500,8 @@
 (add-to-list 'auto-mode-alist '("\\.inl\\'" . c++-mode))
 
 (add-hook 'c-mode-common-hook
-		      (lambda() 
-			      (local-set-key [f4] 'ff-find-other-file)))
+		  (lambda() 
+			(local-set-key [f4] 'ff-find-other-file)))
 
 (defvar my-cpp-other-file-alist
   '(("\\.cpp\\'" (".hpp" ".h" ".inl"))
@@ -515,11 +515,11 @@
 ;; Add underscore to word definition
 (modify-syntax-entry ?_ "w" (standard-syntax-table))
 (add-hook 'c-mode-common-hook
-		      (lambda ()
-			      (modify-syntax-entry ?_ "w")))
+		  (lambda ()
+			(modify-syntax-entry ?_ "w")))
 (add-hook 'js-mode-hook
-		      (lambda ()
-			      (modify-syntax-entry ?_ "w")))
+		  (lambda ()
+			(modify-syntax-entry ?_ "w")))
 
 ;; makes the commenting function a (little )bit similar to qtcrator behavior
 (defun my-qtcreator-likeish-comments (orig-fun beg end &optional arg)
@@ -554,20 +554,20 @@
 ;;==============================================================================
 (use-package glsl-mode
   :mode ("\\.vert\\'"
-		     "\\.vs\\'"
-		     "\\.frag\\'"
-		     "\\.fs\\'"
-		     "\\.glsl\\'"
-		     "\\.brdf\\'"))
+		 "\\.vs\\'"
+		 "\\.frag\\'"
+		 "\\.fs\\'"
+		 "\\.glsl\\'"
+		 "\\.brdf\\'"))
 
 ;;==============================================================================
 ;; cmake-mode
 ;;==============================================================================
 (use-package cmake-mode
   :mode ("CMakeLists\\.txt\\'"
-		     "\\.cmake\\'")
+		 "\\.cmake\\'")
   :custom
-  (cmake-tab-width 2))
+  (cmake-tab-width 4))
 
 ;;==============================================================================
 ;; markdown-mode
@@ -584,11 +584,11 @@
 ;; org-mode
 ;;==============================================================================
 (setq org-support-shift-select t
-	    org-startup-folded nil
-	    org-confirm-babel-evaluate nil
-	    org-src-fontify-natively t
-	    org-edit-src-content-indentation 0
-	    org-src-tab-acts-natively t)
+	  org-startup-folded nil
+	  org-confirm-babel-evaluate nil
+	  org-src-fontify-natively t
+	  org-edit-src-content-indentation 0
+	  org-src-tab-acts-natively t)
 
 (org-babel-do-load-languages
  'org-babel-load-languages
@@ -617,20 +617,20 @@
 
 ;; Some key re-mappings
 (add-hook 'org-mode-hook
-		      (lambda ()
-			      ;; Make meta up/down behave as in all other modes (as per an earlier global setting)
-			      ;; and re-assign org-metadown/-metaup to control meta down/up keys
-			      (local-set-key [(meta up)] (lambda () (interactive) (scroll-down 4)))
-			      (local-set-key [(meta down)] (lambda () (interactive) (scroll-up 4)))
-			      (local-set-key [(control meta down)] 'org-metadown)
-			      (local-set-key [(control meta up)] 'org-metaup)
-			      ;; ' does not work well with international keyboard layout
-			      (local-set-key (kbd "C-c ;") 'org-edit-special)))
+		  (lambda ()
+			;; Make meta up/down behave as in all other modes (as per an earlier global setting)
+			;; and re-assign org-metadown/-metaup to control meta down/up keys
+			(local-set-key [(meta up)] (lambda () (interactive) (scroll-down 4)))
+			(local-set-key [(meta down)] (lambda () (interactive) (scroll-up 4)))
+			(local-set-key [(control meta down)] 'org-metadown)
+			(local-set-key [(control meta up)] 'org-metaup)
+			;; ' does not work well with international keyboard layout
+			(local-set-key (kbd "C-c ;") 'org-edit-special)))
 
 (add-hook 'org-src-mode-hook
-		      (lambda ()
-			      ;; ' does not work well with international keyboard layout
-			      (local-set-key (kbd "C-c ;") 'org-edit-src-exit)))
+		  (lambda ()
+			;; ' does not work well with international keyboard layout
+			(local-set-key (kbd "C-c ;") 'org-edit-src-exit)))
 
 ;;==============================================================================
 ;; magit
@@ -638,7 +638,7 @@
 (use-package magit
   :after (ivy)
   :bind (("C-x g" . magit-status)
-		     ("C-x M-g" . magit-dispatch-popup))
+		 ("C-x M-g" . magit-dispatch-popup))
   :config
   (setq magit-completing-read-function 'ivy-completing-read))
 
