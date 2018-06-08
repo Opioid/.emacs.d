@@ -38,9 +38,9 @@
 (setq horizontal-scroll-bars nil)
 
 (setq-default indent-tabs-mode nil)
-(setq-default tab-width 4)
-(setq sgml-basic-offset 4) ;; In my case basically tab-width for HTML
-(setq-default c-basic-offset 4)
+(setq-default tab-width 2)
+(setq sgml-basic-offset 2) ;; In my case basically tab-width for HTML
+(setq-default c-basic-offset 2)
 (setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
 (setq scroll-step 1)
 (setq scroll-conservatively 10000)
@@ -566,7 +566,7 @@
   :mode ("CMakeLists\\.txt\\'"
 		 "\\.cmake\\'")
   :custom
-  (cmake-tab-width 4))
+  (cmake-tab-width 2))
 
 ;;==============================================================================
 ;; markdown-mode
