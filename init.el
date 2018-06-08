@@ -479,6 +479,7 @@
 ;; yaml
 ;;==============================================================================
 (use-package yaml-mode
+  :mode ("\\.clang-format")
   :hook
   (yaml-mode . (lambda ()
 				 (display-line-numbers-mode 1)
