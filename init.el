@@ -18,7 +18,7 @@
 (when is-win
   (set-default-font "Consolas-12")
   (setq buffer-face-mode-face '(:family "Noto" :height 120 :weight light))
-  (add-to-list 'exec-path "C:/Program Files (x86)/Aspell/bin/")
+  (add-to-list 'exec-path "C:/Program Files (x86)/Hunspell/bin/")
   )
 
 (setq-default line-spacing 1)
