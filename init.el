@@ -162,10 +162,22 @@
   :bind (("C-s" . swiper)
          ("C-r" . swiper))
   :config
+  (defun selection-or-thing-at-point()
+    (cond
+     ((and transient-mark-mode
+           mark-active
+           (not (eq (mark) (point))))
+      (let ((mark-saved (mark))
+            (point-saved (point)))
+        (deactivate-mark)
+        (buffer-substring-no-properties mark-saved point-saved)))
+     (t (format "%s"
+                (or (thing-at-point 'symbol)
+                    "")))))
   (defun swiper-default()
 	"Call 'swiper' with a sane default."
 	(interactive)
-	(swiper (thing-at-point 'symbol)))
+	(swiper (selection-or-thing-at-point)))
   (bind-key [f3] 'swiper-default)
   )
 
