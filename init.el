@@ -372,7 +372,11 @@
     (projectile-compile-project prompt)))
 
 (use-package projectile
-  :config (projectile-mode)
+  :ensure t
+  :config
+  (projectile-mode +1)
+  (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
+  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
   :bind (([f5] . my-projectile-run-project)
 		 ([f7] . my-projectile-compile-project))
   
