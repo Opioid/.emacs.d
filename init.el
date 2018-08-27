@@ -126,6 +126,17 @@
 		  (lambda()
 			(display-line-numbers-mode 1)))
 
+(use-package goto-addr
+  :hook ((compilation-mode . goto-address-mode)
+         (prog-mode . goto-address-prog-mode)
+         (eshell-mode . goto-address-mode)
+         (shell-mode . goto-address-mode))
+  :bind (:map goto-address-highlight-keymap
+              ("<RET>" . goto-address-at-point)
+              ("M-<RET>" . newline))
+  :commands (goto-address-prog-mode
+             goto-address-mode))
+
 (use-package expand-region)
 (global-set-key (kbd "C-=") 'er/expand-region)
 
