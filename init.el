@@ -387,6 +387,7 @@
   :config
   (projectile-mode)
   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+  (define-key projectile-command-map (kbd "s") 'projectile-ripgrep)
   :bind (([f5] . my-projectile-run-project)
 		 ([f7] . my-projectile-compile-project))
   
@@ -396,8 +397,7 @@
 
 (use-package counsel-projectile
   :config
-  (counsel-projectile-mode)
-  (define-key counsel-projectile-command-map (kbd "s") 'counsel-projectile-rg))
+  (counsel-projectile-mode))
 
 ;;=============================================================================
 ;; counsel-etags
