@@ -547,9 +547,9 @@
 		  (lambda ()
 			(modify-syntax-entry ?_ "w")))
 
-;; makes the commenting function a (little )bit similar to qtcrator behavior
+;; makes the commenting function a (little) bit similar to qtcrator behavior
 (defun my-qtcreator-likeish-comments (orig-fun beg end &optional arg)
-  (if (and (eq major-mode 'c++-mode)
+  (if (and (derived-mode-p 'c-mode 'c++-mode)
            (save-excursion
              (goto-char end)
              (not (looking-at-p "[ \t]*$"))))
@@ -559,21 +559,6 @@
     (funcall orig-fun beg end arg)))
 
 (advice-add 'comment-region :around 'my-qtcreator-likeish-comments)
-
-
-;; (defun my-qtcreator-likeish-comments (orig-fun beg end &optional arg)
-;;   (if (and (eq major-mode 'c++-mode)
-;;            (save-excursion
-;;              (goto-char end)
-;;              (not (looking-at-p "[ \t]*$"))))
-;;       (let ((comment-start "/* ")
-;;             (comment-end " */")
-;;             (comment-style 'multi-line)
-;;             (comment-continue ""))
-;;         (funcall orig-fun beg end arg))
-;;     (funcall orig-fun beg end arg)))
-
-;; (advice-add 'comment-region :around 'my-qtcreator-likeish-comments)
 
 ;;==============================================================================
 ;; glsl-mode
