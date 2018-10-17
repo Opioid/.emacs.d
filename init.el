@@ -143,6 +143,7 @@
 (use-package diminish)
 (diminish 'abbrev-mode)
 (diminish 'server-buffer-clients)
+(diminish 'eldoc-mode)
 
 ;;==============================================================================
 ;; ivy/swiper
@@ -382,18 +383,21 @@
 	(projectile-save-project-buffers)
     (projectile-compile-project prompt)))
 
+(defun my-projectile-mode-line ()
+  (let ((project-name (projectile-project-name)))
+    (format " [%s]" (or project-name "-"))))
+
 (use-package projectile
   :ensure t
   :config
   (projectile-mode)
+  (setq projectile-mode-line-function 'my-projectile-mode-line)
   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
   (define-key projectile-command-map (kbd "s") 'projectile-ripgrep)
   :bind (([f5] . my-projectile-run-project)
 		 ([f7] . my-projectile-compile-project))
-  
   :custom
-  (projectile-indexing-method 'alien)
-  (projectile-mode-line '(:eval (format " [%s]" (projectile-project-name)))))
+  (projectile-indexing-method 'alien))
 
 (use-package counsel-projectile
   :config
