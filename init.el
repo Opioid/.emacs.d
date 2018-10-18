@@ -393,7 +393,6 @@
   (projectile-mode)
   (setq projectile-mode-line-function 'my-projectile-mode-line)
   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
-  (define-key projectile-command-map (kbd "s") 'projectile-ripgrep)
   :bind (([f5] . my-projectile-run-project)
 		 ([f7] . my-projectile-compile-project))
   :custom
@@ -401,6 +400,7 @@
 
 (use-package counsel-projectile
   :config
+  (add-to-list 'counsel-projectile-key-bindings '("s" . counsel-projectile-rg) t)
   (counsel-projectile-mode))
 
 ;;=============================================================================
