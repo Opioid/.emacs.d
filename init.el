@@ -533,6 +533,10 @@
 		  (lambda() 
 			(local-set-key [f4] 'ff-find-other-file)))
 
+(add-hook 'c++-mode-hook
+          (lambda()
+            (c-set-offset 'innamespace [0])))
+
 (defvar my-cpp-other-file-alist
   '(("\\.cpp\\'" (".hpp" ".h" ".inl"))
     ("\\.inl\\'" (".hpp" ".h" ".cpp"))
