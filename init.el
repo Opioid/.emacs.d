@@ -432,12 +432,11 @@
   (setq counsel-etags-update-interval 180)
   (setq counsel-etags-quiet-when-updating-tags t)
   ;; Set up auto-update
-  (add-hook
-   'prog-mode-hook
-   (lambda () (add-hook 'after-save-hook
-                        (lambda ()
-                          (counsel-etags-virtual-update-tags))))
-   ))
+  (add-hook 'prog-mode-hook
+            (lambda () (add-hook 'after-save-hook
+                                 (lambda ()
+                                   (counsel-etags-virtual-update-tags)))))
+  )
 
 ;;==============================================================================
 ;; flyspell
