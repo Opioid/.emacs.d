@@ -433,9 +433,9 @@
   (setq counsel-etags-quiet-when-updating-tags t)
   ;; Set up auto-update
   (add-hook 'prog-mode-hook
-            (lambda () (add-hook 'after-save-hook
-                                 (lambda ()
-                                   (counsel-etags-virtual-update-tags)))))
+            (lambda ()
+              (add-hook 'after-save-hook
+                        'counsel-etags-virtual-update-tags 'append 'local)))
   )
 
 ;;==============================================================================
