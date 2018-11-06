@@ -398,7 +398,8 @@
   :ensure t
   :bind (("M-." . counsel-etags-find-tag-at-point)
          ("M-t" . counsel-etags-grep-symbol-at-point)
-         ("M-s" . counsel-etags-find-tag))
+         ;;("M-s" . counsel-etags-find-tag)
+         )
   :config
   ;; Ignore files above 800kb
   (setq counsel-etags-max-file-size 800)
@@ -452,7 +453,6 @@
 		  (lambda()
 			(display-line-numbers-mode 0)
 			(company-mode 0)))
-
 
 (defun docmode()
   (flyspell-mode 1)
