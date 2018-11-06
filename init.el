@@ -286,6 +286,7 @@
   :config
   ;; Zero delay when pressing tab
   ;; (setq company-idle-delay 0)
+  (setq company-selection-wrap-around t)
   (add-hook 'after-init-hook 'global-company-mode)
   (define-key company-active-map (kbd "<escape>") #'company-abort)
   (setq company-backends (delete 'company-clang company-backends))
