@@ -476,11 +476,14 @@
   :mode ("\\.html?\\'"))
 
 ;;==============================================================================
-;; js2-mode
+;; javascript
 ;;==============================================================================
 (use-package js2-mode
   :mode ("\\.js\\'"))
 
+(add-hook 'js-mode-hook
+		  (lambda ()
+			(modify-syntax-entry ?_ "w")))
 ;;==============================================================================
 ;; json
 ;;==============================================================================
@@ -536,9 +539,6 @@
 ;; Add underscore to word definition
 (modify-syntax-entry ?_ "w" (standard-syntax-table))
 (add-hook 'c-mode-common-hook
-		  (lambda ()
-			(modify-syntax-entry ?_ "w")))
-(add-hook 'js-mode-hook
 		  (lambda ()
 			(modify-syntax-entry ?_ "w")))
 
