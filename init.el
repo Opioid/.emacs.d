@@ -10,16 +10,13 @@
   ;; (set-default-font "Inconsolata-g 11"))
   ;; emacs cannot handle the dash in the font name, so I created a copy
   (set-default-font "Inconsolata_g 11")
-  (setq buffer-face-mode-face '(:family "Noto" :height 120 :weight medium))
-  )
+  (setq buffer-face-mode-face '(:family "Noto" :height 120 :weight medium)))
 (when is-mac
-  (set-default-font "-apple-Monaco-medium-normal-normal-*-10-*-*-*-m-0-iso10646-1")
-  )
+  (set-default-font "-apple-Monaco-medium-normal-normal-*-10-*-*-*-m-0-iso10646-1"))
 (when is-win
   (set-default-font "Consolas-12")
   (setq buffer-face-mode-face '(:family "Noto" :height 120 :weight light))
-  (add-to-list 'exec-path "C:/Program Files (x86)/Hunspell/bin/")
-  )
+  (add-to-list 'exec-path "C:/Program Files (x86)/Hunspell/bin/"))
 
 (setq-default line-spacing 1)
 
@@ -116,9 +113,7 @@
     (set-face-attribute 'mode-line-inactive nil :underline  line)
     (set-face-attribute 'mode-line          nil :box        nil)
     (set-face-attribute 'mode-line-inactive nil :box        nil)
-    (set-face-attribute 'mode-line-inactive nil :background "#32312a") 
-	)
-  )
+    (set-face-attribute 'mode-line-inactive nil :background "#32312a")))
 
 ;; Line numbering
 (setq display-line-numbers-width-start t)
@@ -174,7 +169,7 @@
   :bind (("C-s" . swiper)
          ("C-r" . swiper))
   :config
-  (defun selection-or-thing-at-point()
+  (defun selection-or-thing-at-point ()
     (cond
      ((and transient-mark-mode
            mark-active
@@ -186,12 +181,11 @@
      (t (format "%s"
                 (or (thing-at-point 'symbol)
                     "")))))
-  (defun swiper-default()
+  (defun swiper-default ()
 	"Call 'swiper' with a sane default."
 	(interactive)
 	(swiper (selection-or-thing-at-point)))
-  (bind-key [f3] 'swiper-default)
-  )
+  (bind-key [f3] 'swiper-default))
 
 (defun my-minibuffer-keyboard-quit ()
   "Abort recursive edit."
@@ -222,9 +216,7 @@
             "rg -i -M 120 --no-heading --line-number --color never %s ."
             )
     (warn "\nWARNING: Could not find the ripgrep executable. It "
-          "is recommended you install ripgrep.")
-    )
-  )
+          "is recommended you install ripgrep.")))
 
 ;;==============================================================================
 ;; mode-line adjustments
@@ -256,10 +248,7 @@
                      ))
 
                   ;; right
-                  (format-mode-line "%l:%c %p%%")
-	              )
-	             ))
-              )
+                  (format-mode-line "%l:%c %p%%")))))
 
 ;; Has to come after our customized mode-line render
 (use-package moody
@@ -300,8 +289,7 @@
   (add-hook 'after-init-hook 'global-company-mode)
   (define-key company-active-map (kbd "<escape>") #'company-abort)
   (setq company-backends (delete 'company-clang company-backends))
-  (add-to-list 'company-backends 'company-cmake)
-  )
+  (add-to-list 'company-backends 'company-cmake))
 
 ;; Security-wise this is stupid
 ;; But I didn't find another way to set company-clang-arguments in .dir-locals.el
@@ -435,8 +423,7 @@
   (add-hook 'prog-mode-hook
             (lambda ()
               (add-hook 'after-save-hook
-                        'counsel-etags-virtual-update-tags 'append 'local)))
-  )
+                        'counsel-etags-virtual-update-tags 'append 'local))))
 
 ;;==============================================================================
 ;; flyspell
@@ -515,7 +502,7 @@
 				 (flyspell-mode 0))))
 
 ;;==============================================================================
-;; C++
+;; C/C++
 ;;==============================================================================
 ;; (use-package irony
 ;;   :hook ((c++-mode) . irony-mode))
@@ -530,7 +517,8 @@
 
 (add-hook 'c-mode-common-hook
 		  (lambda() 
-			(local-set-key [f4] 'ff-find-other-file)))
+			(local-set-key [f4] 'ff-find-other-file)
+            (c-set-offset 'brace-list-intro '+)))
 
 (add-hook 'c++-mode-hook
           (lambda()
