@@ -664,6 +664,13 @@
   (setq magit-completing-read-function 'ivy-completing-read))
 
 ;;==============================================================================
+;; google-this
+;;==============================================================================
+(use-package google-this
+  :config
+  (google-this-mode 1))
+
+;;==============================================================================
 ;; delete-selection-mode
 ;;==============================================================================
 ;; For some reason "delete-selection-mode" gets disabled again under Linux
