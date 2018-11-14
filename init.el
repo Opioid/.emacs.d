@@ -667,6 +667,7 @@
 ;; google-this
 ;;==============================================================================
 (use-package google-this
+  :diminish
   :config
   (google-this-mode 1))
 
