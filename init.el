@@ -157,8 +157,8 @@
   (setq ivy-height 13)
   (setq ivy-re-builders-alist
 		'((swiper . ivy--regex-plus)
-		  (counsel-rg . ivy--regex-plus)
-		  (t      . ivy--regex-fuzzy)))
+		  (counsel-ag . ivy--regex-plus)
+		  (t . ivy--regex-fuzzy)))
   (setq counsel-find-file-at-point t)
   :bind (:map ivy-minibuffer-map
 			  ("M-<up>" . ivy-scroll-down-command)
@@ -381,11 +381,10 @@
   :config
   (projectile-mode)
   (setq projectile-mode-line-function 'my-projectile-mode-line)
+  (setq projectile-indexing-method 'hybrid)
   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
   :bind (([f5] . my-projectile-run-project)
-		 ([f7] . my-projectile-compile-project))
-  :custom
-  (projectile-indexing-method 'hybrid))
+		 ([f7] . my-projectile-compile-project)))
 
 (use-package counsel-projectile
   :config
@@ -404,6 +403,7 @@
   :config
   ;; Ignore files above 800kb
   (setq counsel-etags-max-file-size 800)
+  ;; (setq counsel-etags-debug t)
   ;; Ignore build directories for tagging
   (add-to-list 'counsel-etags-ignore-directories '"build*")
   (add-to-list 'counsel-etags-ignore-directories '"data")
