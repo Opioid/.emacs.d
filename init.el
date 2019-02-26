@@ -557,6 +557,18 @@
 (advice-add 'comment-region :around 'my-qtcreator-likeish-comments)
 
 ;;==============================================================================
+;; python-mode
+;;==============================================================================
+(defun my-python-shell-send-buffer ()
+  "Save the current buffer before calling `python-shell-send-buffer'."
+  (interactive)
+  (save-buffer)
+  (python-shell-send-buffer))
+
+(add-hook 'python-mode-hook
+          (lambda () (define-key python-mode-map (kbd "C-c C-c") 'my-python-shell-send-buffer)))
+
+;;==============================================================================
 ;; glsl-mode
 ;;==============================================================================
 (use-package glsl-mode
