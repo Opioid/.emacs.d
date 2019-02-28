@@ -165,7 +165,6 @@
 			  ("M-<down>" . ivy-scroll-up-command)))
 
 (use-package swiper
-  :ensure t
   :bind (("C-s" . swiper)
          ("C-r" . swiper))
   :config
@@ -201,7 +200,6 @@
 (define-key ivy-minibuffer-map (kbd "<escape>") 'my-minibuffer-keyboard-quit)
 
 (use-package counsel
-  :ensure t
   :bind (("M-x" . counsel-M-x)
          ("C-x C-f" . counsel-find-file)
 		 ("M-y" . counsel-yank-pop)
@@ -299,6 +297,14 @@
 ;;==============================================================================
 ;; dired-mode
 ;;==============================================================================
+(use-package dired)
+
+(use-package dired-single
+  :bind (:map dired-mode-map
+			  ("<return>" . dired-single-buffer)
+              ("<mouse-1>" . dired-single-buffer-mouse)
+              ("<backspace>" . dired-single-up-directory)))
+
 ;; List directories before files
 (defun mydired-sort ()
   "Sort dired listings with directories first."
@@ -377,7 +383,6 @@
     (format " [%s]" (or project-name "-"))))
 
 (use-package projectile
-  :ensure t
   :config
   (projectile-mode)
   (setq projectile-mode-line-function 'my-projectile-mode-line)
@@ -395,7 +400,6 @@
 ;; counsel-etags
 ;;=============================================================================
 (use-package counsel-etags
-  :ensure t
   :bind (("M-." . counsel-etags-find-tag-at-point)
          ("M-t" . counsel-etags-grep-symbol-at-point)
          ;;("M-s" . counsel-etags-find-tag)
@@ -440,7 +444,6 @@
   (unbind-key "C-;" flyspell-mode-map))
 
 (use-package flyspell-correct-ivy
-  :ensure t
   :after flyspell)
 
 ;;==============================================================================
@@ -599,7 +602,6 @@
 ;; markdown-mode
 ;;==============================================================================
 (use-package markdown-mode
-  :ensure t
   :commands (markdown-mode gfm-mode)
   :mode (("README\\.md\\'" . gfm-mode)
          ("\\.md\\'" . markdown-mode)
@@ -610,7 +612,6 @@
 ;; adoc-mode
 ;;==============================================================================
 (use-package adoc-mode
-  :ensure t
   :mode (("\\.adoc\\'" . adoc-mode)))
 
 ;;==============================================================================
