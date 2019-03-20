@@ -16,7 +16,9 @@
 (when is-win
   (set-default-font "Consolas-12")
   (setq buffer-face-mode-face '(:family "Noto" :height 120 :weight light))
-  (add-to-list 'exec-path "C:/Program Files (x86)/Hunspell/bin/"))
+  (add-to-list 'exec-path "C:/Program Files (x86)/Hunspell/bin/")
+  (setq explicit-shell-file-name "c:/Program Files/Git/bin/bash.exe")
+  (setq explicit-bash.exe-args '("--login" "-i")))
 
 (setq-default line-spacing 1)
 
@@ -472,6 +474,12 @@
 (add-hook 'image-mode-hook
 		  (lambda()
 			(company-mode 0)))
+
+(defun shellmode()
+  (setq truncate-lines nil)
+  (setq word-wrap 1))
+
+(add-hook 'shell-mode-hook 'shellmode)
 
 ;;==============================================================================
 ;; web-mode
