@@ -370,6 +370,7 @@
 (defun my-projectile-run-project (&optional prompt)
   (interactive "P")
   (let (compilation-read-command prompt)
+    (projectile-save-project-buffers)
     (projectile-run-project prompt)))
 
 ;; Directly compile the project, without further prompt.
