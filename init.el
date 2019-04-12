@@ -36,6 +36,7 @@
 (scroll-bar-mode 0)
 (setq horizontal-scroll-bars nil)
 
+(setq-default buffer-file-coding-system 'utf-8-unix)
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
 (setq sgml-basic-offset 4) ;; In my case basically tab-width for HTML
