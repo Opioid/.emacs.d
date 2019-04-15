@@ -482,6 +482,7 @@
   (setq word-wrap 1))
 
 (add-hook 'shell-mode-hook 'shellmode)
+(add-hook 'compilation-mode-hook 'shellmode)
 
 ;;==============================================================================
 ;; web-mode
