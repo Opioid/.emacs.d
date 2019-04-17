@@ -435,6 +435,14 @@
               (add-hook 'after-save-hook
                         'counsel-etags-virtual-update-tags 'append 'local))))
 
+(setq counsel-etags-update-tags-backend
+      (lambda (src-dir)
+        (cond
+         ((string-match "bud" src-dir)
+          (shell-command "rusty-tags emacs"))
+         (t
+          (counsel-etags-scan-dir-internal src-dir)))))
+
 ;;==============================================================================
 ;; flyspell
 ;;==============================================================================
@@ -559,7 +567,7 @@
 
 ;; makes the commenting function a (little) bit similar to qtcrator behavior
 (defun my-qtcreator-likeish-comments (orig-fun beg end &optional arg)
-  (if (and (derived-mode-p 'c-mode 'c++-mode)
+  (if (and (derived-mode-p 'c-mode 'c++-mode 'rust-mode)
            (save-excursion
              (goto-char end)
              (not (looking-at-p "[ \t]*$"))))
