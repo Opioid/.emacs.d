@@ -411,7 +411,7 @@
   :config
   ;; Ignore files above 800kb
   (setq counsel-etags-max-file-size 800)
-  ;; (setq counsel-etags-debug t)
+  (setq counsel-etags-debug t)
   ;; Ignore build directories for tagging
   (add-to-list 'counsel-etags-ignore-directories '"build*")
   (add-to-list 'counsel-etags-ignore-directories '"data")
