@@ -17,6 +17,7 @@
   (set-default-font "Consolas-12")
   (setq buffer-face-mode-face '(:family "Noto" :height 120 :weight light))
   (add-to-list 'exec-path "C:/Program Files (x86)/Hunspell/bin/")
+  (setq shell-file-name "c:/Program Files/Git/bin/bash.exe")
   (setq explicit-shell-file-name "c:/Program Files/Git/bin/bash.exe")
   (setq explicit-bash.exe-args '("--login" "-i")))
 
@@ -434,14 +435,6 @@
             (lambda ()
               (add-hook 'after-save-hook
                         'counsel-etags-virtual-update-tags 'append 'local))))
-
-(setq counsel-etags-update-tags-backend
-      (lambda (src-dir)
-        (cond
-         ((string-match "bud" src-dir)
-          (shell-command "rusty-tags emacs"))
-         (t
-          (counsel-etags-scan-dir-internal src-dir)))))
 
 ;;==============================================================================
 ;; flyspell
