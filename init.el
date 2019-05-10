@@ -166,7 +166,8 @@
   (setq counsel-find-file-at-point t)
   :bind (:map ivy-minibuffer-map
 			  ("M-<up>" . ivy-scroll-down-command)
-			  ("M-<down>" . ivy-scroll-up-command)))
+			  ("M-<down>" . ivy-scroll-up-command)
+              ("C-<return>" . ivy-immediate-done)))
 
 (use-package swiper
   :bind (("C-s" . swiper)
