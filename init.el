@@ -624,7 +624,8 @@
   :commands (markdown-mode gfm-mode)
   :mode (("README\\.md\\'" . gfm-mode)
          ("\\.md\\'" . markdown-mode)
-         ("\\.markdown\\'" . markdown-mode))
+         ("\\.markdown\\'" . markdown-mode)
+         ("\\.md.html\\'" . markdown-mode))
   :init (setq markdown-command "multimarkdown"))
 
 ;;==============================================================================
