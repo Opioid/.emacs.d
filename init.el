@@ -209,7 +209,9 @@
          ("C-x C-f" . counsel-find-file)
 		 ("M-y" . counsel-yank-pop)
 		 :map ivy-minibuffer-map
-		 ("M-y" . ivy-next-line))
+		 ("M-y" . ivy-next-line)
+         :map minibuffer-local-map
+         ("C-r" . counsel-minibuffer-history))
   :config
   (if (executable-find "rg")
       ;; use ripgrep instead of grep because it's way faster
@@ -220,6 +222,10 @@
             )
     (warn "\nWARNING: Could not find the ripgrep executable. It "
           "is recommended you install ripgrep.")))
+
+(use-package shell-mode
+  :bind (("C-r" . counsel-shell-history))
+  )
 
 ;;==============================================================================
 ;; mode-line adjustments
