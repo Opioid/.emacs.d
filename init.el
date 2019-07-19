@@ -223,8 +223,9 @@
     (warn "\nWARNING: Could not find the ripgrep executable. It "
           "is recommended you install ripgrep.")))
 
-(use-package shell-mode
-  :bind (("C-r" . counsel-shell-history))
+(use-package shell
+  :bind (:map shell-mode-map
+              ("C-r" . counsel-shell-history))
   )
 
 ;;==============================================================================
