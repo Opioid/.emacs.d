@@ -171,25 +171,8 @@
 
 (use-package swiper
   :bind (("C-s" . swiper)
-         ("C-r" . swiper))
-  :config
-  (defun selection-or-thing-at-point ()
-    (cond
-     ((and transient-mark-mode
-           mark-active
-           (not (eq (mark) (point))))
-      (let ((mark-saved (mark))
-            (point-saved (point)))
-        (deactivate-mark)
-        (buffer-substring-no-properties mark-saved point-saved)))
-     (t (format "%s"
-                (or (thing-at-point 'symbol)
-                    "")))))
-  (defun swiper-default ()
-	"Call 'swiper' with a sane default."
-	(interactive)
-	(swiper (selection-or-thing-at-point)))
-  (bind-key [f3] 'swiper-default))
+         ("C-r" . swiper)
+         ("<f3>". swiper-thing-at-point)))
 
 (defun my-minibuffer-keyboard-quit ()
   "Abort recursive edit."
