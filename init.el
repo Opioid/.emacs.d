@@ -167,6 +167,7 @@
   :bind (:map ivy-minibuffer-map
 			  ("M-<up>" . ivy-scroll-down-command)
 			  ("M-<down>" . ivy-scroll-up-command)
+              ("<return>" . ivy-alt-done)
               ("C-<return>" . ivy-immediate-done)))
 
 (use-package swiper
@@ -211,6 +212,7 @@
               ("C-r" . counsel-shell-history))
   )
 
+(use-package wgrep)
 ;;==============================================================================
 ;; mode-line adjustments
 ;;==============================================================================
