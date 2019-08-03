@@ -646,7 +646,7 @@
  'org-babel-load-languages
  '((python . t)))
 
-;; NO spell check for embedded snippets
+;; No spell check for embedded snippets
 (defadvice org-mode-flyspell-verify (after org-mode-flyspell-verify-hack activate)
   (let* ((rlt ad-return-value)
          (begin-regexp "^[ \t]*#\\+begin_\\(src\\|html\\|latex\\|example\\|quote\\)")
