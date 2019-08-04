@@ -6,13 +6,13 @@
 (setq is-win (equal system-type 'windows-nt))
 (setq is-linux (string-equal system-type "gnu/linux"))
 
-(set-default-font "Source Code Pro 12")
-
 (when is-linux
+  (set-default-font "Source Code Pro 12")
   (setq buffer-face-mode-face '(:family "Noto" :height 120 :weight medium)))
 (when is-mac
   (set-default-font "-apple-Monaco-medium-normal-normal-*-10-*-*-*-m-0-iso10646-1"))
 (when is-win
+  (set-default-font "Source Code Pro Light 11")
   (setq buffer-face-mode-face '(:family "Noto" :height 120 :weight light))
   (add-to-list 'exec-path "C:/Program Files (x86)/Hunspell/bin/")
   (setq shell-file-name "c:/Program Files/Git/bin/bash.exe")
