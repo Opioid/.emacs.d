@@ -160,6 +160,7 @@
   (setq ivy-re-builders-alist
 		'((swiper . ivy--regex-plus)
 		  (counsel-ag . ivy--regex-plus)
+          (counsel-rg . ivy--regex-plus)
 		  (t . ivy--regex-fuzzy)))
   (setq counsel-find-file-at-point t)
   :bind (:map ivy-minibuffer-map
