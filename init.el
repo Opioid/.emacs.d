@@ -278,6 +278,14 @@
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 
 ;;==============================================================================
+;; whole-line-or-region
+;;==============================================================================
+(use-package whole-line-or-region
+  :diminish whole-line-or-region-local-mode
+  :config
+  (whole-line-or-region-global-mode))
+
+;;==============================================================================
 ;; company
 ;;==============================================================================
 (use-package company
