@@ -150,29 +150,29 @@
 ;;==============================================================================
 ;; ivy/swiper
 ;;==============================================================================
-(use-package flx)
+;; (use-package flx)
 
-(use-package ivy
-  :diminish ivy-mode
-  :init (ivy-mode 1)
-  :config
-  (setq ivy-use-virtual-buffers t)
-  ;; (setq enable-recursive-minibuffers t)
-  (setq ivy-count-format "(%d/%d) ")
-  (setq ivy-wrap t)
-  (setq ivy-initial-inputs-alist nil)
-  (setq ivy-height 13)
-  (setq ivy-re-builders-alist
-		'((swiper . ivy--regex-plus)
-		  (counsel-ag . ivy--regex-plus)
-          (counsel-rg . ivy--regex-plus)
-		  (t . ivy--regex-fuzzy)))
-  (setq counsel-find-file-at-point t)
-  :bind (:map ivy-minibuffer-map
-			  ("M-<up>" . ivy-scroll-down-command)
-			  ("M-<down>" . ivy-scroll-up-command)
-              ("<return>" . ivy-alt-done)
-              ("C-<return>" . ivy-immediate-done)))
+;; (use-package ivy
+;;   :diminish ivy-mode
+;;   :init (ivy-mode 1)
+;;   :config
+;;   (setq ivy-use-virtual-buffers t)
+;;   ;; (setq enable-recursive-minibuffers t)
+;;   (setq ivy-count-format "(%d/%d) ")
+;;   (setq ivy-wrap t)
+;;   (setq ivy-initial-inputs-alist nil)
+;;   (setq ivy-height 13)
+;;   (setq ivy-re-builders-alist
+;; 		'((swiper . ivy--regex-plus)
+;; 		  (counsel-ag . ivy--regex-plus)
+;;           (counsel-rg . ivy--regex-plus)
+;; 		  (t . ivy--regex-fuzzy)))
+;;   (setq counsel-find-file-at-point t)
+;;   :bind (:map ivy-minibuffer-map
+;; 			  ("M-<up>" . ivy-scroll-down-command)
+;; 			  ("M-<down>" . ivy-scroll-up-command)
+;;               ("<return>" . ivy-alt-done)
+;;               ("C-<return>" . ivy-immediate-done)))
 
 ;; (use-package swiper
 ;;   :bind (("C-s" . swiper)
@@ -192,37 +192,53 @@
 ;; (define-key ivy-minibuffer-map (kbd "<f3>") 'my-minibuffer-keyboard-quit)
 ;; (define-key ivy-minibuffer-map (kbd "<escape>") 'my-minibuffer-keyboard-quit)
 
-(use-package counsel
-  :bind (("M-x" . counsel-M-x)
-         ("C-x C-f" . counsel-find-file)
-		 ("M-y" . counsel-yank-pop)
-		 :map ivy-minibuffer-map
-		 ("M-y" . ivy-next-line)
-         :map minibuffer-local-map
-         ("C-r" . counsel-minibuffer-history))
-  :config
-  (if (executable-find "rg")
-      ;; use ripgrep instead of grep because it's way faster
-      (setq counsel-grep-base-command
-            "rg -i -M 120 --no-heading --line-number --color never '%s' %s"
-            counsel-rg-base-command
-            "rg -i -M 120 --no-heading --line-number --color never %s ."
-            )
-    (warn "\nWARNING: Could not find the ripgrep executable. It "
-          "is recommended you install ripgrep.")))
+;; (use-package counsel
+;;   :bind (("M-x" . counsel-M-x)
+;;          ("C-x C-f" . counsel-find-file)
+;; 		 ("M-y" . counsel-yank-pop)
+;; 		 :map ivy-minibuffer-map
+;; 		 ("M-y" . ivy-next-line)
+;;          :map minibuffer-local-map
+;;          ("C-r" . counsel-minibuffer-history))
+;;   :config
+;;   (if (executable-find "rg")
+;;       ;; use ripgrep instead of grep because it's way faster
+;;       (setq counsel-grep-base-command
+;;             "rg -i -M 120 --no-heading --line-number --color never '%s' %s"
+;;             counsel-rg-base-command
+;;             "rg -i -M 120 --no-heading --line-number --color never %s ."
+;;             )
+;;     (warn "\nWARNING: Could not find the ripgrep executable. It "
+;;           "is recommended you install ripgrep.")))
 
-(use-package shell
-  :bind (:map shell-mode-map
-              ("C-r" . counsel-shell-history))
+;; (use-package shell
+;;   :bind (:map shell-mode-map
+;;               ("C-r" . counsel-shell-history))
+;;   )
+
+;;==============================================================================
+;; selectrum
+;;==============================================================================
+(use-package prescient)
+
+(use-package selectrum-prescient)
+
+(use-package selectrum
+  :init
+  (selectrum-mode 1)
+  (selectrum-prescient-mode 1)
   )
+
 
 ;;==============================================================================
 ;; ctrlf
 ;;==============================================================================
 (use-package ctrlf
   :init (ctrlf-mode 1)
-  :bind (([f3] . ctrlf-forward-symbol-at-point))
+  :bind  (("C-s" . ctrlf-forward-fuzzy)
+          ([f3] . ctrlf-forward-symbol-at-point))
   )
+  
 
 (use-package wgrep)
 ;;==============================================================================
@@ -296,8 +312,11 @@
 ;;==============================================================================
 ;; company
 ;;==============================================================================
+(use-package company-prescient)
+
 (use-package company
   :diminish company-mode
+  :init (company-prescient-mode 1)
   :config
   ;; Zero delay when pressing tab
   ;; (setq company-idle-delay 0)
@@ -409,45 +428,45 @@
   :bind (([f5] . my-projectile-run-project)
 		 ([f7] . my-projectile-compile-project)))
 
-(use-package counsel-projectile
-  :config
-  (add-to-list 'counsel-projectile-key-bindings '("s" . counsel-projectile-rg) t)
-  (counsel-projectile-mode))
+;; (use-package counsel-projectile
+;;   :config
+;;   (add-to-list 'counsel-projectile-key-bindings '("s" . counsel-projectile-rg) t)
+;;   (counsel-projectile-mode))
 
 ;;=============================================================================
 ;; counsel-etags
 ;;=============================================================================
-(use-package counsel-etags
-  :bind (("M-." . counsel-etags-find-tag-at-point)
-         ("M-t" . counsel-etags-grep-symbol-at-point)
-         ;;("M-s" . counsel-etags-find-tag)
-         )
-  :config
-  ;; Ignore files above 800kb
-  (setq counsel-etags-max-file-size 800)
-  (setq counsel-etags-debug t)
-  ;; Ignore build directories for tagging
-  (add-to-list 'counsel-etags-ignore-directories '"build*")
-  (add-to-list 'counsel-etags-ignore-directories '"data")
-  (add-to-list 'counsel-etags-ignore-directories '"deps")
-  (add-to-list 'counsel-etags-ignore-directories '"doc")
-  (add-to-list 'counsel-etags-ignore-directories '"extern")
-  (add-to-list 'counsel-etags-ignore-directories '"test")
-  (add-to-list 'counsel-etags-ignore-directories '"tools")
-  (add-to-list 'counsel-etags-ignore-directories '".vscode")
-  (add-to-list 'counsel-etags-ignore-filenames '".clang-format")
-  ;; Don't ask before rereading the TAGS files if they have changed
-  (setq tags-revert-without-query t)
-  ;; Don't warn when TAGS files are large
-  (setq large-file-warning-threshold nil)
-  ;; How many seconds to wait before rerunning tags for auto-update
-  (setq counsel-etags-update-interval 180)
-  (setq counsel-etags-quiet-when-updating-tags t)
-  ;; Set up auto-update
-  (add-hook 'prog-mode-hook
-            (lambda ()
-              (add-hook 'after-save-hook
-                        'counsel-etags-virtual-update-tags 'append 'local))))
+;; (use-package counsel-etags
+;;   :bind (("M-." . counsel-etags-find-tag-at-point)
+;;          ("M-t" . counsel-etags-grep-symbol-at-point)
+;;          ;;("M-s" . counsel-etags-find-tag)
+;;          )
+;;   :config
+;;   ;; Ignore files above 800kb
+;;   (setq counsel-etags-max-file-size 800)
+;;   (setq counsel-etags-debug t)
+;;   ;; Ignore build directories for tagging
+;;   (add-to-list 'counsel-etags-ignore-directories '"build*")
+;;   (add-to-list 'counsel-etags-ignore-directories '"data")
+;;   (add-to-list 'counsel-etags-ignore-directories '"deps")
+;;   (add-to-list 'counsel-etags-ignore-directories '"doc")
+;;   (add-to-list 'counsel-etags-ignore-directories '"extern")
+;;   (add-to-list 'counsel-etags-ignore-directories '"test")
+;;   (add-to-list 'counsel-etags-ignore-directories '"tools")
+;;   (add-to-list 'counsel-etags-ignore-directories '".vscode")
+;;   (add-to-list 'counsel-etags-ignore-filenames '".clang-format")
+;;   ;; Don't ask before rereading the TAGS files if they have changed
+;;   (setq tags-revert-without-query t)
+;;   ;; Don't warn when TAGS files are large
+;;   (setq large-file-warning-threshold nil)
+;;   ;; How many seconds to wait before rerunning tags for auto-update
+;;   (setq counsel-etags-update-interval 180)
+;;   (setq counsel-etags-quiet-when-updating-tags t)
+;;   ;; Set up auto-update
+;;   (add-hook 'prog-mode-hook
+;;             (lambda ()
+;;               (add-hook 'after-save-hook
+;;                         'counsel-etags-virtual-update-tags 'append 'local))))
 
 ;;==============================================================================
 ;; flyspell
@@ -461,8 +480,8 @@
   ;; I'm never using thins function, and it interferes with iedit default
   (unbind-key "C-;" flyspell-mode-map))
 
-(use-package flyspell-correct-ivy
-  :after flyspell)
+;; (use-package flyspell-correct-ivy
+;;   :after flyspell)
 
 ;;==============================================================================
 ;; rainbow-mode
