@@ -220,9 +220,9 @@
 ;; ctrlf
 ;;==============================================================================
 (use-package ctrlf
-  :config
-  (add-hook 'after-init-hook #'ctrlf-mode)
-)
+  :init (ctrlf-mode 1)
+  :bind (([f3] . ctrlf-forward-symbol-at-point))
+  )
 
 (use-package wgrep)
 ;;==============================================================================
