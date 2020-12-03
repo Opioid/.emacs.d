@@ -174,23 +174,23 @@
               ("<return>" . ivy-alt-done)
               ("C-<return>" . ivy-immediate-done)))
 
-(use-package swiper
-  :bind (("C-s" . swiper)
-         ("C-r" . swiper)
-         ("<f3>". swiper-thing-at-point)))
+;; (use-package swiper
+;;   :bind (("C-s" . swiper)
+;;          ("C-r" . swiper)
+;;          ("<f3>". swiper-thing-at-point)))
 
-(defun my-minibuffer-keyboard-quit ()
-  "Abort recursive edit."
-  "In Delete Selection mode, if the mark is active, just deactivate it;"
-  "then it takes a second \\[keyboard-quit] to abort the minibuffer."
-  (interactive)
-  (if (and delete-selection-mode transient-mark-mode mark-active)
-      (setq deactivate-mark t)
-    (when (get-buffer "*Completions*") (delete-windows-on "*Completions*"))
-    (abort-recursive-edit)))
+;; (defun my-minibuffer-keyboard-quit ()
+;;   "Abort recursive edit."
+;;   "In Delete Selection mode, if the mark is active, just deactivate it;"
+;;   "then it takes a second \\[keyboard-quit] to abort the minibuffer."
+;;   (interactive)
+;;   (if (and delete-selection-mode transient-mark-mode mark-active)
+;;       (setq deactivate-mark t)
+;;     (when (get-buffer "*Completions*") (delete-windows-on "*Completions*"))
+;;     (abort-recursive-edit)))
 
-(define-key ivy-minibuffer-map (kbd "<f3>") 'my-minibuffer-keyboard-quit)
-(define-key ivy-minibuffer-map (kbd "<escape>") 'my-minibuffer-keyboard-quit)
+;; (define-key ivy-minibuffer-map (kbd "<f3>") 'my-minibuffer-keyboard-quit)
+;; (define-key ivy-minibuffer-map (kbd "<escape>") 'my-minibuffer-keyboard-quit)
 
 (use-package counsel
   :bind (("M-x" . counsel-M-x)
@@ -215,6 +215,14 @@
   :bind (:map shell-mode-map
               ("C-r" . counsel-shell-history))
   )
+
+;;==============================================================================
+;; ctrlf
+;;==============================================================================
+(use-package ctrlf
+  :config
+  (add-hook 'after-init-hook #'ctrlf-mode)
+)
 
 (use-package wgrep)
 ;;==============================================================================
