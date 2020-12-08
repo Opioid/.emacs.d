@@ -66,6 +66,8 @@
 
 (global-set-key (kbd "<S-return>") (kbd "C-e C-m"))
 
+(add-to-list 'load-path "~/.emacs.d/site-lisp")
+
 (defun config() (interactive) (find-file "~/.emacs.d/init.el"))
 (global-set-key (kbd "<f9>") 'config)
 
@@ -229,6 +231,33 @@
   (selectrum-prescient-mode 1)
   )
 
+(use-package consult
+  ;; Replace bindings. Lazily loaded due to use-package.
+  :bind
+
+  ;; The :init configuration is always executed (Not lazy!)
+  :init
+
+  ;; Replace functions (consult-multi-occur is a drop-in replacement)
+  (fset 'multi-occur #'consult-multi-occur)
+
+  ;; Configure other variables and modes in the :config section, after lazily loading the package
+  :config
+
+  ;; Optionally enable previews. Note that individual previews can be disabled
+  ;; via customization variables.
+
+  ;; (consult-preview-mode)
+  )
+
+;; Optionally enable richer annotations using the Marginalia package
+(use-package marginalia
+  ;; The :init configuration is always executed (Not lazy!)
+  :init
+
+  ;; Must be in the :init section of use-package such that the mode gets
+  ;; enabled right away. Note that this forces loading the package.
+  (marginalia-mode))
 
 ;;==============================================================================
 ;; ctrlf
@@ -238,7 +267,6 @@
   :bind  (("C-s" . ctrlf-forward-fuzzy)
           ([f3] . ctrlf-forward-symbol-at-point))
   )
-  
 
 (use-package wgrep)
 ;;==============================================================================
