@@ -7,8 +7,8 @@
 (setq is-linux (string-equal system-type "gnu/linux"))
 
 (when is-linux
-  (set-frame-font "Source Code Pro 12")
-  (setq buffer-face-mode-face '(:family "Noto" :height 120 :weight medium)))
+  (set-frame-font "Source Code Pro 14")
+  (setq buffer-face-mode-face '(:family "Noto" :height 140 :weight medium)))
 (when is-mac
   (set-frame-font "-apple-Monaco-medium-normal-normal-*-10-*-*-*-m-0-iso10646-1"))
 (when is-win
