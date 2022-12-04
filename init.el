@@ -34,6 +34,7 @@
 (tool-bar-mode 0)
 (scroll-bar-mode 0)
 (setq horizontal-scroll-bars nil)
+(setq visible-bell 1)
 
 (setq-default buffer-file-coding-system 'utf-8-unix)
 (setq-default indent-tabs-mode nil)
